@@ -1,0 +1,47 @@
+* {	box-sizing: border-box;}
+body {font-family: Tahoma, Geneva, sans-serif;}
+h1 {font-size:xx-large;  font-style: normal; font-variant: normal; font-weight: 700; line-height: 26px; margin:20px 0; padding:0;} 
+h2 {font-size:x-large;  font-style: normal; font-variant: normal; font-weight: 700; line-height: 22px; margin:16px 0; padding:0;} 
+h3 {font-size:medium; font-style: normal; font-variant: normal; font-weight: 700; line-height: 16px; margin:12px 0; padding:0;} 
+p {font-size:medium; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
+a {text-decoration: none;}
+a:hover {color: tomato;}
+.container {position:relative;margin:0;}
+.container img {vertical-align:middle;}
+.container .sidenav{width:160px; position:fixed; top:20px; left:20px; padding:15px 10px; background: rgb(.5,.5,.5); background: rgba(.5,.5,.5,.5);}
+.container .sidenav .name{margin:20px 0 0px 6px; font-size:x-large;}
+.container .sidenav .name a{color:tomato;}
+.container .sidenav .name a:hover {color: tomato;}
+.container .sidenav .affiliation {margin:16px 0 10px 6px;font-size:small;}
+.container .sidenav .affiliation a{color:ivory;}
+.container .sidenav .affiliation a:hover {color: tomato;}
+.container .sidenav .sidemenu {padding:6px; font-size:x-large; display: block;}
+.container .sidenav .sidemenu a{color: ivory;}
+.container .sidenav .sidemenu a:hover {color: tomato;}
+.cr_container {position:relative;width:186px;margin:0;overflow:hidden;display: inline-block;}
+.cr_container img {vertical-align:middle;}
+.cr_container .sidenav{width:160px; position:fixed; top:20px; left:20px; padding:15px 10px; background: rgb(.5,.5,.5); background: rgba(.5,.5,.5,.5);}
+.cr_container .sidenav .name{margin:20px 0 0px 6px; font-size:x-large;}
+.cr_container .sidenav .name a{color:ivory;}
+.cr_container .sidenav .name a:hover {color: tomato;}
+.cr_container .sidenav .affiliation {margin:16px 0 10px 6px;font-size:small;}
+.cr_container .sidenav .affiliation a{color:ivory;}
+.cr_container .sidenav .affiliation a:hover {color: tomato;}
+.cr_container .sidenav .sidemenu {padding:6px; font-size:x-large; display: block;}
+.cr_container .sidenav .sidemenu a{color: ivory;}
+.cr_container .sidenav .sidemenu a:hover {color: tomato;}
+.cr_container .sidenav .sidemenu_on {padding:6px; font-size:x-large; display: block;}
+.cr_container .sidenav .sidemenu_on a {color: tomato;}
+.contents{max-width:770px;margin: 10px 0 0 20px;display: inline-block;vertical-align: top;}
+.cv_lead{padding:0; margin: 0 36px;}
+.cv_list{padding:0; margin: 0px 12px; list-style-type:none;}
+.cv_list li{padding:0; margin: 6px 0px; list-style-type:none;}
+.cv_aff{margin-top:12px; font-size:large;  font-weight:600; color:tomato;}
+.res_materials{padding:0; margin: 0 0 0 10px; list-style-type:none;}
+.res_materials  li{padding:0; margin: 0 0 10px 0; list-style-type:none;}
+.workshops p{margin:0 0 0 10px; padding:0;}
+.res_slides{padding:0; margin: 0 0 0 10px; list-style-type:none;}
+.res_slides li{padding:0; margin: 0 0 10px 0; list-style-type:none;}
+.remarks{margin: 10px 0 20px 0; padding:8px 32px; background:Azure none repeat scroll 0% 50%;}
+.remarks p{margin:0; padding:0;}
+.remarks ul{margin:6px 0 0 32px; padding:0; list-style-type:none;}
