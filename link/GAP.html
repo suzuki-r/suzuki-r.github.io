@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="mypane.css">
+    <title>GAP</title>
+    <style>
+      .comments{margin: 0px auto; text-align: left; width: 90%; background-color:white;}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidenav">
+        <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+        <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+        <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+        <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math
+            Kernel</a></div>
+        <div class="sidemenu"><a href="Jupyter.html" target="_top">Python/Jupyter</a></div>
+        <div class="sidemenu_on"><a href="GAP.html" target="_top">GAP</a></div>
+      </div>
+      <div class="contents_sub">
+        <h2 style="text-align: center; margin:15px 0;">Hot to Use GAP</h2>
+        <hr style="width: 95%;"><br>
+        <div align="center">
+          <div style="margin: 0px auto; text-align: left; width: 25%;"><a href="#sec0">0.
+              Preliminary</a><br>
+            <a href="#sec1">1. Install</a><br>
+            <a href="#sec2">2. Launch and Quit</a><br>
+            <a href="#sec3">3. Basics</a><br>
+            <a href="#sec4">4. Read and Write</a><br>
+            <a href="#sec5">5. Notation</a><br>
+          </div>
+        </div>
+        <br>
+        <hr style="width: 95%;">
+        <h3 id="sec0">0. Preliminary<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;"><a href="https://www.gap-system.org">GAP</a>
+          is a program for computer group theory. Another useful reference is <a
+            href="http://brauer.maths.qmul.ac.uk/Atlas/v3/">ATLAS</a>.</div>
+        <h3 id="sec1">1. Install<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;"> Download the file and
+          follow the <a href="https://www.gap-system.org/Download/index.html">instruction</a>
+          together with README. Alternatively, one can use the <a href="http://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/gap.html?highlight=gap4">GAP
+            interface</a> in SageMath.</div>
+        <h3 id="sec2">2. Launch and Quit<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>Open Terminal, go to the GAP folder and type</p>
+          <p>&nbsp;&nbsp;&nbsp; &gt; ./gap<br>
+            or <br>
+            &nbsp;&nbsp;&nbsp; &gt; sh bin/gap.sh</p>
+          <p>To finish the session, type</p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; quit;</p>
+        </div>
+        <h3 id="sec3">3. Basics<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <ul>
+            <li>A sentence must finish with ";", and a line can contain several
+              sentences. The line is evaluated immediately by typing RETURN.</li>
+            <li>No output is displayed for the sentence ending with ";;".</li>
+            <li>GAP neglects spaces, RETURN without ";", and all words after
+              "#".</li>
+            <li>GAP is sensitive to upper and lower cases.</li>
+            <li>To show manual, type e.g. gap&gt; ?Gcd</li>
+            <li>To complement a command, type TAB once or twice.</li>
+            <li>All calculation of GAP is exact. No decimals can be used.</li>
+          </ul>
+          <ul>
+          </ul>
+        </div>
+        <h3 id="sec4">4. Read and Write<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p><b>Reading:</b> To read the file stored in "./prog/code.txt", type</p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; Read("./prog/code.txt");</p>
+          <p>Note that Read() returns no output. No results will be displayed.<br>
+            If one wants to read the content without evaluating it, type</p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; Exec("cat ./prog/code.txt");</p>
+          <p><b>Writing:</b> There are several ways to write out the results.</p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; PrintTo(filename,"...");<br>
+            &nbsp;&nbsp;&nbsp; gap&gt; AppendTo(filename,"..."); </p>
+          <p>will automatically create the file <i>filename</i> and keep adding
+            the contents.<br>
+            Other commands are </p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; LogTo("filename")<br>
+            &nbsp;&nbsp;&nbsp; gap&gt; InputLogTo("filename")</p>
+          <p>LogTo() writes out all inputs and outputs to the file <i>filename</i>,
+            and InputLogTo() writes all input commands to the file.</p>
+        </div>
+        <h3 id="sec5">5. Notation<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>Some some algebraic numbers can be used, such as</p>
+          <ul>
+            <li>ER(x); square-root of x</li>
+            <li>E(n); n-th root of unity</li>
+            <li>CF(n); cyclotomic fields, i.e. E(n) with rational coefficients</li>
+          </ul>
+          <p> [1..10] means the list of integers from 1 to 10. [2,4,..10] means
+            even integers from 2 to 10.</p>
+          <p>One gets the element of a list L by L[2].</p>
+          <p>One gets the generator of a finitely presented group G by G.1. More
+            generally, one gets the member of a record in this way,</p>
+          <p>&nbsp;&nbsp;&nbsp; gap&gt; r:=rec(a:=1,b:=2);<br>
+            &nbsp;&nbsp;&nbsp; gap&gt; r.a;<br>
+            &nbsp;&nbsp;&nbsp; gap&gt; r.("a");</p>
+          <p>See <i>Accessing Record Elements</i> for details.</p>
+        </div>
+        <hr> <br>
+      </div>
+    </div>
+    
+  </body>
+</html>

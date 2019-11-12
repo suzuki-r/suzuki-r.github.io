@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="mypane.css">
+    <title>Mathematica Tips</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidenav">
+        <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+        <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+        <div class="sidemenu_on"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+        <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math
+            Kernel</a></div>
+        <div class="sidemenu"><a href="Jupyter.html" target="_top">Python/Jupyter</a></div>
+        <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+      </div>
+      <div class="contents_sub">
+        <h2 style="margin:10px 0 20px 0; padding:0;">Mathematica Tips</h2>
+        1. Follow these <a href="http://blog.wolfram.com/2011/12/07/10-tips-for-writing-fast-mathematica-code/">tips</a>
+        in the Wolfram blog.<br>
+        <br>
+        2. Try to <a href="http://reference.wolfram.com/mathematica/ParallelTools/tutorial/Overview.html">parallelize</a>
+        the computation.<br>
+        <br>
+        3. Try a remote login to the Faculty server.
+        (username@staff.science.uu.nl in the case of ITF Utrecht)<br>
+        <br>
+        4. Use a large number of CPUs (a workstation cluster).<br>
+        <br>
+        Usually one cannot open a notebook, so s/he needs to send jobs to the
+        Mathematica kernel. For this purpose, a notebook should be rewritten a
+        batch file.<br>
+        <br>
+        See <a href="MathKernelTips.html">How to use Math kernel</a>.<br>
+        <!-- a href="MarsTips.html">How to use mars Beowulf cluster</a--> <br>
+        5. To save the current notebook, use NotebookSave[EvaluationNotebook[]].
+        You do not have to go in front of the desktop and click "Save".<br>
+        <br>
+        6. To clear all memories in the kernel and keep evaluating the cells,
+        use SetOptions[$FrontEnd, "ClearEvaluationQueueOnKernelQuit" -&gt;
+        False]; Quit[]. <br>
+        <br>
+        <hr style="width:90%">
+http://reference.wolfram.com/legacy/v5_2/GettingStarted/System-SpecificInformation/SpecialWaysToRunTheKernel.html<br>
+http://www.damtp.cam.ac.uk/internal/computing/numerical/mathematicabg.html<br>
+        http://eislab.gatech.edu/people/scholand/nb-convert-text.html<br>
+        http://stackoverflow.com/questions/7864643/<br>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>

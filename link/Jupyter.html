@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="mypane.css">
+    <title>Jupyter/Python</title>
+    <style>
+div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:white}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidenav">
+        <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+        <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+        <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+        <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math
+            Kernel</a></div>
+        <div class="sidemenu_on"><a href="Jupyter.html" target="_top">Python/Jupyter</a></div>
+        <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+      </div>
+      <div class="contents_sub">
+        <h2 style="text-align: center;">How to Use Jupyter / Python</h2>
+        <hr style="width: 95%;"><br>
+        <div align="center">
+          <div style="margin: 0px auto; text-align: left; width: 25%;"><a href="#sec0">0.
+              Preliminary</a><br>
+            <a href="#sec1">1. Install</a><br>
+            <a href="#sec2">2. Launch</a><br>
+            <a href="#sec3">3. Code and Run</a><br>
+          </div>
+        </div>
+        <br>
+        <hr style="width: 95%;">
+        <h3 id="sec0">0. Preliminary<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>Jupyter is a notebook interface of Pyhton and works like
+            Mathematica notebooks. One can immediately execute the program
+            without compiling the code. </p>
+          <p> Technically, Jupyter is one of the Python libraries. There are
+            useful libraries such as sympy (Symbolic computation), tensorflow
+            (Machine learning). </p>
+        </div>
+        <h3 id="sec1">1. Install<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;"> Follow the
+          instruction of <a href="https://www.tensorflow.org/install/install_mac">TensorFlow</a>.
+          Tips are given below.
+          <ul>
+            <li> You will use <b>virtualenv</b> to install TensorFlow. This
+              means that you install Jupyter <b>below</b> the TensorFlow
+              folder, even if you have it elsewhere. See <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">this
+                post</a>. </li>
+            <li> If you want to skip the step (iii) in <a href="#sec2">Run</a>,
+              try the tricks of <a href="https://stackoverflow.com/questions/44176160/jupyter-notebooks-startup-and-stopping">this</a>
+              and <a href="http://jupyter-notebook.readthedocs.io/en/latest/public_server.html">that</a>.
+            </li>
+          </ul>
+          <p> One can work with other machine learning frameworks, other virtual
+            environments of Python, and other bash profiles.<sup><a href="#fn1"
+                id="ref1">1</a></sup>
+          </p>
+        </div>
+        <h3 id="sec2">2. Launch<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>i) Launch TensorFlow from Terminal <sup><a href="#fn2" id="ref2">2</a></sup><br>
+            <br>
+            &nbsp; $ source ~/tensorflow/bin/activate<br>
+          </p>
+          <p>ii) Open Jupyter notebook <sup><a href="#fn3" id="ref3">3</a></sup><br>
+            <br>
+            &nbsp; $ jupyter notebook<br>
+            or <br>
+            &nbsp; $ jupyter notebook <i>filename</i>.ipynb<br>
+          </p>
+          <p> iii) Copy &amp; paste the URL shown in Terminal to the web
+            browser:<br>
+            <br>
+            &nbsp;&nbsp; http://localhost:8888/?token=(something)<br>
+          </p>
+        </div>
+        <h3 id="sec3">3. Code and Run<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>Commands are executed by Shift+Return. "In []" becomes "[*]" during
+            evaluating, and turns into "[number]" when it finishes. </p>
+        </div>
+        <br>
+        <hr> <sup id="fn1">1</sup> The following line in the ~/.bash_profile
+        changes the prompt of OSX Terminal session,<br>
+        &nbsp; $&nbsp; eval "$(pyenv virtualenv-init -)"<br>
+        because <i>eval</i> changes the environment of the main bash shell.
+        Since one cannot "deactivate" pyenv-virtualenv like virtualenv, one
+        should either delete the line, or use<br>
+        &nbsp; $&nbsp; export PYENV_VIRTUALENV_DISABLE_PROMPT=1 <br>
+        <sup id="fn2">2</sup> $ source <i>filename</i> (or $ . <i> filename</i>
+        ) executes the contents of <i>filename</i> in the current shell.<sup><a
+            href="#ref1">?</a></sup><br>
+        <sup id="fn3">3</sup> $ ipython <i>notebook</i> was an old version of $
+        jupyter <i> notebook</i>.<sup><a href="#ref2">?</a></sup><br>
+        <p> </p>
+      </div>
+    </div>
+  </body>
+</html>
