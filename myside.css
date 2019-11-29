@@ -9,17 +9,19 @@ a:hover {color: tomato;}
 .container {position:relative; max-width:960px;margin:0;white-space:nowrap;}
 .cr_container {position:relative;width:186px;margin:0;overflow:hidden;display: inline-block;}
 .cr_container img {vertical-align:middle;}
-.cr_container .sidenav{width:160px; position:fixed; top:20px; left:20px; padding:15px 10px; background: rgb(.5,.5,.5); background: rgba(.5,.5,.5,.5);}
+.cr_container .sidenav{width:160px; position:fixed; top:20px; left:20px; padding:15px 10px; background: rgb(.7,.7,.7); background: rgba(.7,.7,.7,.7);}
 .cr_container .sidenav .name{margin:20px 0 0px 6px; font-size:x-large;}
 .cr_container .sidenav .name a{color:ivory;}
 .cr_container .sidenav .name a:hover {color: tomato;}
-.cr_container .sidenav .affiliation {margin:16px 0 10px 6px;font-size:small;}
+.cr_container .sidenav .name_on{margin:20px 0 0px 6px; font-size:x-large;}
+.cr_container .sidenav .name_on a{color:tomato;}
+.cr_container .sidenav .affiliation {margin:20px 0 10px 6px;font-size:small;}
 .cr_container .sidenav .affiliation a{color:ivory;}
 .cr_container .sidenav .affiliation a:hover {color: tomato;}
-.cr_container .sidenav .sidemenu {padding:6px; font-size:x-large; display: block;}
+.cr_container .sidenav .sidemenu {margin:10px 0; padding:6px; font-size:x-large; display: block;}
 .cr_container .sidenav .sidemenu a{color: ivory;}
 .cr_container .sidenav .sidemenu a:hover {color: tomato;}
-.cr_container .sidenav .sidemenu_on {padding:6px; font-size:x-large; display: block;}
+.cr_container .sidenav .sidemenu_on {margin:10px 0; padding:6px; font-size:x-large; display: block;}
 .cr_container .sidenav .sidemenu_on a {color: tomato;}
 .contents{max-width:770px;margin: 10px 0 0 20px;display:inline-table;vertical-align: top; overflow:scroll; position:absolute;}
 .cv_lead{padding:0; margin: 0 36px;}
