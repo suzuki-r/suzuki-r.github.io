@@ -164,14 +164,18 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>$ pyenv virtualenvs</pre>
             <pre>$ pyenv install anaconda3-20yy.mm</pre>
           </div>
-          <p>We should turn on (and off) a virtual environment before using
-            Jupyter</p>
+            <p>We create a virtual environment under the name <i>environment_name</i>. </p>
+              <div class="quote">
+                <pre>$ pyenv virtualenv <i>python_version</i> <i>environment_name</i></pre>
+              </div>
+            <p>If we omit <i>python_version</i>, then the system uses the default environment specified by ~/.pyenv/version. We can check newly created environments by "$ pyenv versions". We should turn on (and off) a virtual environment before using Jupyter</p>
           <div class="quote">
+            <pre>$ pyenv virtualenv <i>environment_name</i></pre>
             <pre>$ pyenv activate <i>environment_name</i></pre>
             <pre>$ jupyter notebook</pre>
             <pre>$ pyenv deactivate</pre>
           </div>
-          <p>We can remove the old version of Anaconda by</p>
+          <p>We can remove the old version of Anaconda, python or unwanted virtual environments by</p>
           <div class="quote">
             <pre>$ pyenv uninstall anaconda3-x.y.z</pre>
           </div>
