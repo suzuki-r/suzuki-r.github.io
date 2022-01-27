@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="mypane.css">
-    <title>Jupyter/Python</title>
+    <title>Jupyter/ipynb</title>
     <style>
       .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px; 
         margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
@@ -19,11 +19,14 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <div class="sidemenu"><a href="old.html" target="_top">Old</a></div>
         <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
         <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
-        <div class="sidemenu_on"><a href="Jupyter.html" target="_top">Python/Jupyter</a></div>
-        <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+         <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
+         <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+        <div class="sidemenu"><a href="Python.html" target="_top">Python</a></div>
+         <div class="sidemenu_on"><a href="Jupyter.html" target="_top">Jupyter</a></div>
+         <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
       </div>
       <div class="contents_sub">
-        <h2 style="text-align: center;">How to Use Jupyter / Python</h2>
+        <h2 style="text-align: center;">How to Use Jupyter / ipynb</h2>
         <hr style="width: 95%;"><br>
         <div align="center">
           <div style="margin: 0px auto; text-align: left; width: 25%;"><a href="#sec0">0.
@@ -50,14 +53,13 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
               should install additional modules later.</li>
             <li> (simple) downloading OS X graphical version of <a href="https://www.anaconda.com/products/individual">Anaconda</a>;
               should launch it from Application and not Terminal</li>
-            <li> (advanced) by Environment Isolation Tool (EIT) such as pyenv or
-              virtualenv</li>
+              <li> (advanced) by Environment Isolation Tool (EIT); see also <a href="python.html">this page</a></li>
           </ol>
           <p>The three installations are completely independent. When you use
             Jupyter under EIT, you need to activate the particular virtual
             environment every time, rather than immediately typing <i>jupyter
               notebook</i> in Terminal.</p>
-          <p>If you do not want to skip installation troubles, the simplest way to use Python is to use <a href="https://colab.research.google.com/notebooks/welcome.ipynb">Google Colab</a>.
+          <p>If you do not want to skip installation troubles, the simplest way to use Python is to use <a href="https://colab.research.google.com/notebooks/welcome.ipynb">Google Colab</a>. However, you may lose the calculation results on Colab when you are disconnected from Internet.
           </p>
         </div>
         <h3 id="sec1">1. Install<br>
@@ -82,19 +84,37 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         </div>
         <h3 id="sec2">2. Launch<br>
         </h3>
-          <h3>2-1. TensorFlow</h3>
+          <p>How to open a jupyter notebook, assuming we finished installation.</p>
+          <h3>2-1. Quick methods</h3>
+          <div style="margin-left:30px; margin-right:30px;">
+            <p>Text editors such as <i>Visual Studio Code</i> can open .ipynb files. Another simple way is to use Google Colab.
+            </p>
+          </div>
+          <h3>2-2. Pyenv-virtualenv</h3>
+          <div style="margin-left:30px; margin-right:30px;">
+            <p>First go to the folder where your code is found. Check the installed virtual environments by</p>
+            <div class="quote">
+              <pre>$ pyenv virtualenvs</pre>
+            </div>
+            <p>Activate the preferred virtual environment</p>
+            <div class="quote">
+              <pre>pyenv activate <i>environment_name</i></pre>
+              <pre>jupyter notebook</pre>
+            </div>
+          </div>
+          <h3>2-3. TensorFlow</h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>i) Launch TensorFlow from Terminal <sup><a href="#fn2" id="ref2">2</a></sup></p>
           <div class="quote">
-            <pre>$ source ~/tensorflow/bin/activate</pre>
+            <pre>source ~/tensorflow/bin/activate</pre>
           </div>
           <p>ii) Open Jupyter notebook <sup><a href="#fn3" id="ref3">3</a></sup></p>
           <div class="quote">
-            <pre>$ jupyter notebook</pre>
+            <pre>jupyter notebook</pre>
           </div>
           <p>or</p>
           <div class="quote">
-            <pre>$ jupyter notebook <i>filename</i>.ipynb</pre>
+            <pre>jupyter notebook <i>filename</i>.ipynb</pre>
           </div>
           <p> iii) Copy &amp; paste the URL shown in Terminal to the web
             browser:<br>
@@ -103,94 +123,84 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           </p>
           <p> iv) We should terminate the virtual environment</p>
           <div class="quote">
-            <pre>$ source deactivate</pre>
+            <pre>source deactivate</pre>
           </div>
           <p>If you use Anaconda, this should be</p>
           <div class="quote">
-            <pre>$ conda deactivate</pre>
+            <pre>conda deactivate</pre>
           </div>
           <p></p>
         </div>
-            <h3>2-2. Pyenv</h3>
-          <div style="margin-left:30px; margin-right:30px;">
-          <p>First go to the folder where your code is found. Check the installed virtual environments by</p>
-            <div class="quote">
-              <pre>$ pyenv virtualenvs</pre>
-            </div>
-            <p>Activate the preferred virtual environment</p>
-            <div class="quote">
-              <pre>$ pyenv activate <i>environment_name</i></pre>
-              <pre>$ jupyter notebook</pre>
-              <pre>$ pyenv deactivate</pre>
-            </div>
-          </div>
-        <h3 id="sec3">3. Code and Run<br>
+          <h3 id="sec3">3. Code and Run<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>Commands are executed by Shift+Return. "In []" becomes "[*]" during
             evaluating, and turns into "[number]" when it finishes. </p>
         </div>
-        <h3 id="sec4">4. Environment Isolation Tool<br>
+        <h3 id="sec4">4. Install Environment Isolation Tools<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>Some people emphasize the importance of virtual environments, to
             check the consistency of python versions, package requirements and
-            package installation trees. Several tools are available, such as <b>pyenv</b>,
-            <b>virtualenv</b>, <b>pyenv-virtualenv</b>, <b>Anaconda</b> and <b>Pipenv</b>.
-            Below I explain <b>pyenv</b>. </p>
-          <p>First, we install or upgrade pyenv by Homebrew.</p>
+            package installation trees. Several tools are available, such as <b>pyenv-virtualenv</b>, <b>pyenv-virtualenv</b>, <b>Anaconda</b> and <b>Pipenv</b>.
+            Below I explain <b>pyenv-virtualenv</b>. </p>
+          <p>First, we install or upgrade pyenv by Homebrew,</p>
           <div class="quote">
-            <pre>$ brew upgrade pyenv</pre>
+              <pre>brew upgrade pyenv</pre>
           </div>
-          <p>The system may automatically launch </p>
-          <pre>brew cleanup</pre>
+            <p>To install Homebrew on Linux, see <a href="https://stackoverflow.com/questions/33353618/can-i-use-homebrew-on-ubuntu">SE</a>. The mirror in <a href="https://mirror.tuna.tsinghua.edu.cn/help/homebrew/">Tsinghua</a> is useful if you are inside China. The system may automatically launch </p>
+            <div class="quote">
+              <pre>brew cleanup</pre>
+            </div>
           In case you find a permission error, try (see <a href="https://github.com/Homebrew/homebrew-core/issues/45009">this
             post</a>)
           <p></p>
           <div class="quote">
-            <pre>$ sudo chown -R $(whoami) $(brew --prefix)/*</pre>
+            <pre>sudo chown -R $(whoami) $(brew --prefix)/*</pre>
           </div>
           <p>Second, we install the latest version of Python. You can check it
             by the official website, or by typing </p>
           <div class="quote">
-            <pre>$ pyenv install --list</pre>
+            <pre>pyenv install --list</pre>
           </div>
           <p>If the latest version is 3.x.y, you install it, change the python
             version of the current user, and refresh the status.</p>
           <div class="quote">
-            <pre>$ pyenv install 3.x.y</pre>
-            <pre>$ pyenv global 3.x.y</pre>
-            <pre>$ eval "$(pyenv init -)"</pre>
+            <pre>pyenv install 3.x.y</pre>
+            <pre>pyenv global 3.x.y</pre>
+            <pre>eval "$(pyenv init -)"</pre>
           </div>
-          <p>We can check versions,</p>
+          <p>We can check installed versions,</p>
           <div class="quote">
-            <pre>$ pyenv versions</pre>
-            <pre>$ python --version</pre>
-            <pre>$ pip -V</pre>
+            <pre>pyenv versions</pre>
+            <pre>python --version</pre>
+            <pre>pip -V</pre>
           </div>
           <p>Third, we install (the latest version of) <b>Jupyter</b>. However,
             Jupyter is not in the pyenv's install list. A typical error is</p>
-          <pre>pyenv: jupyter: command not found</pre>
+            <div class="quote">
+              <pre>pyenv: jupyter: command not found</pre>
+            </div>
           <p>Jupyter is included in the package called Anaconda, which can be
             installed by pyenv. Check available virtual environments and install
             the latest version of Anaconda,</p>
           <div class="quote">
-            <pre>$ pyenv virtualenvs</pre>
-            <pre>$ pyenv install anaconda3-20yy.mm</pre>
+            <pre>pyenv virtualenvs</pre>
+            <pre>pyenv install anaconda3-20yy.mm</pre>
           </div>
             <p>We create a virtual environment under the name <i>environment_name</i>. </p>
               <div class="quote">
-                <pre>$ pyenv virtualenv <i>python_version</i> <i>environment_name</i></pre>
+                <pre>pyenv virtualenv <i>python_version</i> <i>environment_name</i></pre>
               </div>
             <p>If we omit <i>python_version</i>, then the system uses the default environment specified by ~/.pyenv/version. We can check newly created environments by "$ pyenv versions". We should turn on (and off) a virtual environment before using Jupyter</p>
           <div class="quote">
-            <pre>$ pyenv activate <i>environment_name</i></pre>
-            <pre>$ jupyter notebook</pre>
-            <pre>$ pyenv deactivate</pre>
+            <pre>pyenv activate <i>environment_name</i></pre>
+            <pre>jupyter notebook</pre>
+            <pre>pyenv deactivate</pre>
           </div>
           <p>We can remove the old version of Anaconda, python or unwanted virtual environments by</p>
           <div class="quote">
-            <pre>$ pyenv uninstall anaconda3-x.y.z</pre>
+            <pre>pyenv uninstall anaconda3-x.y.z</pre>
           </div>
         </div>
         <br>

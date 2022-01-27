@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="mypane.css">
+    <title>Python</title>
+    <style>
+      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px; 
+        margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
+        .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;
+        text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
+div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:white}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidenav">
+        <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+        <div class="sidemenu"><a href="old.html" target="_top">Old</a></div>
+        <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+        <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+         <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
+         <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+        <div class="sidemenu_on"><a href="Python.html" target="_top">Python</a></div>
+         <div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>
+         <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
+      </div>
+      <div class="contents_sub">
+        <h2 style="text-align: center;">Python basics</h2>
+        <hr style="width: 95%;"><br>
+        <div align="center">
+          <div style="margin: 0px auto; text-align: left; width: 33%;">
+            <a href="#sec1">1. Python versions</a><br>
+            <a href="#sec2">2. Package managers</a><br>
+            <a href="#sec3">3. Tips</a><br>
+            <a href="#sec4">4. Compiler</a><br>
+          </div>
+        </div>
+        <br>
+        <hr style="width: 95%;">
+        <h3 id="sec1">1. Python versions<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>
+              Mac OSX can have multiple type of python; System python and the installed pythons. The system python should never be removed. To find the working version of python, open Terminal and type either of </p>
+          <div class="quote">
+            <pre>python --version</pre>
+            <pre>python3 --version</pre>
+          </div>
+          <p>depending on python 2.x or 3.x. To remove unwanted versions, </p>
+          <div class="quote">
+            <pre> brew uninstall python</pre>
+            <pre> brew uninstall python3</pre>
+        </div>
+        <p>This will remove the python installed via Homebrew.
+        </p>
+    </div>
+        <h3 id="sec2">2. Package managers<br>
+        </h3>
+        <h4>Pip and Pipenv<br>
+        </h4>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>
+          Pip is a <i>Package Installer for Python</i>. More precisely pip is for python3.x, and pip2 is for python 2.x. If we want to install a package on Python2, use pip2. Some examples are</p>
+           <div class="quote">
+            <pre>pip2 install cython</pre>
+            <pre>pip2 install PyOpenGL</pre>
+            <pre>pip install pygame</pre>
+            <pre>pip install dlib</pre>
+        </div>
+<p>When using virtual environments (pyenv-virtualenv, pipenv, anaconda, etc), we should first activate an environment, then install the package. For example, installing via pip (without virtualization) is different from installing via pipenv. If we want to install a package inside pipenv, type</p>
+          <div class="quote">
+            <pre>pipenv install cython</pre>
+        </div>
+        </div>
+        <h4>Environment Isolation Tools (pyenv-virtualenv)<br>
+        </h4>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>
+          Pyenv manages different versions of python. We should use pyenv-virtualenv in order to manage virtual environments. 
+          Suppose you installed pyenv, pyenv-virtualenv, the latest version of python, set PATH, and created a new virtal environment <i>environment_name</i> (see <a href="Jupyter.html">this page</a> for how to install).
+      <!-- To check the current version of python inside pyenv,</p>
+          <div class="quote">
+            <pre>pyenv version</pre>
+        </div>
+<p>The option <i>pyenv versions</i> shows all the installed versions. To check all the existing virtal environments,</p>
+          <div class="quote">
+            <pre>pyenv virtualenvs</pre>
+        </div>
+<p>To create a new virtal environment  using the current version of python,</p>
+          <div class="quote">
+            <pre>pyenv virtualenv environment_name</pre>
+        </div -->
+<p>To activate the virtal environment <i>environment_name</i>, and launch a jupyter notebook,</p>
+          <div class="quote">
+            <pre>pyenv activate environment_name</pre>
+            <pre>(environment_name)> jupyter notebook</pre>
+        </div>
+<p>If you install various packages in the jupyter notebooks, then the packages remain installed inside this environment. (In Google Colab, you need to install packages for each session.) To exit from the virtal environment, type Ctrl+C or</p>
+          <div class="quote">
+            <pre>pyenv deactivate</pre>
+        </div>
+<h3 id="sec3">3. Tips<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p><u><b>Maths</b></u>&nbsp; The math module can be imported in two ways,</p>
+<ul>
+<li>“import math”; use arctan as math.atan</li>
+<li>“from math import atan” or “from math import *”; use arctan as atan</li>
+<li>the power multiplication is a**b, where b should be a float</li>
+<li>the imaginary unit is 1j. j is a variable</li>
+<li>exp() does not take complex arguments by default. We should import <i>cmath</i> and use cmath.exp().</li>
+</ul>
+          <p><u><b>List</b></u>&nbsp; </p>
+<ul>
+<li>Numbers in a square bracket [0,1] is a mutable list</li>
+<li>Numbers in a parenthesis (0,1) is an immutable tuple; see <a href="https://stackoverflow.com/questions/8900166/whats-the-difference-between-lists-enclosed-by-square-brackets-and-parentheses">SE</a></li>
+<li>the notation [1]*3 means [1,1,1] and not [3,3,3]</li>
+<li>it is useful to create lis=[0]*length (an empty list with a fixed length), because we cannot create a list directly by specifying an element, like lis[1]=0</li>
+<li>the n-th element of a list L is L[n-1], where n=1,2,…,len(L)</li>
+<li>a more general format is L[start:end:step], thus L[::-1] shows the list elements in the reverse order</li>
+<li>Lists cannot be added or subtracted. Should use np.array</li>
+</ul>
+          <p><u><b>Loop</b></u>&nbsp; “for” loop should be written in the format</p>
+            <div class="quote">
+            <pre>for (var) in (iterable object):</pre>
+        </div><br>
+    and keep indentation within the scope of the loop. Strictly speaking, this corresponds to <i>foreach</i> in C++</p>
+          <p><u><b>Range</b></u>&nbsp;  range(start, stop, step) is an iterable object, which should be used with caution.
+<ul>
+<li>it returns a list of integers as the range type; e.g. list(range(0, 10, 2)) gives [0,2,4,6,8]</li>
+<li>all arguments must be integers</li>
+<li>range and list have the same index structure; the content starts at 0, ends at (length-1)</li>
+</ul>
+          <p><u><b>Dictionary data type</b></u>&nbsp; </p>
+          <ul>
+<li>the method items() transforms a <i>dict</i> into a <i>dict_items</i></li>
+<li>list() transforms a <i>dict_items</i> into a <i>list</i></li>
+<li>See <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Data Structures</a> for the dictionary data type</li>
+<li>To extract the value for the key of a dictionary, use get(key,0). It returns 0 when no such key exists</li>
+</ul>
+          <p><u><b>Decimal and binary</b></u>&nbsp; 
+              <ul>
+              <li>int(b) returns b as a decimal number; e.g. 0010 to 10</li>
+              <li>int(b, 2) returns b as a binary number; e.g. 0010 to 2</li>
+               </ul>
+           Use format() to convert a decimal number to a text string keeping the leading zero’s. For example, str(’{:05b}’.format(10)) keeps five numbers.</p>
+          <p><u><b>Misc</b></u>&nbsp; </p>
+                    <ul>
+              <li>One can break a (long) line by inserting \ at the end. </li>
+              <li>Single-line comments can be created by #</li>
+               <li>Multi-line comments can be created by triple quotations (under some <a href="https://stackoverflow.com/questions/7696924/is-there-a-way-to-create-multiline-comments-in-python">limitations</a>)</li>
+               </ul>    
+</div>
+        <h3 id="sec4">4. Compiler<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>
+Python is slow compared to C, even if we do not use ipynb. A python compiler <a href="https://www.pypy.org/">PyPy</a> may accelerate your computation. However, a lot of python libraries are incompatible with PyPy. See <a href="https://doc.pypy.org/en/latest/faq.html#should-i-install-numpy-or-numpypy">FAQ</a>
+          </p>
+      </div>
+  </div>
+    </div>
+  </body>
+</html>
