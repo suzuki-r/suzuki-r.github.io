@@ -29,17 +29,16 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <h2 style="text-align: center;">How to Use Jupyter / ipynb</h2>
         <hr style="width: 95%;"><br>
         <div align="center">
-          <div style="margin: 0px auto; text-align: left; width: 25%;"><a href="#sec0">0.
-              Preliminary</a><br>
-            <a href="#sec1">1. Install</a><br>
+          <div style="margin: 0px auto; text-align: left; width: 25%;">
+              <a href="#sec1">1. Preliminary</a><br>
             <a href="#sec2">2. Launch</a><br>
             <a href="#sec3">3. Code and Run</a><br>
-            <a href="#sec4">4. Environment Isolation Tool</a><br>
+            <a href="#sec4">4. Install pyenv-virtualenv</a><br>
           </div>
         </div>
         <br>
         <hr style="width: 95%;">
-        <h3 id="sec0">0. Preliminary<br>
+        <h3 id="sec1">1. Preliminary<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>Jupyter is a notebook interface of Pyhton and works like
@@ -47,7 +46,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             without compiling the code. Jupyter is one of the Python libraries.
             There are useful libraries such as sympy (Symbolic computation),
             TensorFlow (Machine learning). </p>
-          <p>Jupyter can be installed in three ways;</p>
+          <p>Jupyter can be installed in several ways;</p>
           <ol>
             <li> (minimal) by pip, the official package installer of Pyhton;
               should install additional modules later.</li>
@@ -55,44 +54,24 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
               should launch it from Application and not Terminal</li>
               <li> (advanced) by Environment Isolation Tool (EIT); see also <a href="python.html">this page</a></li>
           </ol>
-          <p>The three installations are completely independent. When you use
+          <p>These installations are completely independent. When you use
             Jupyter under EIT, you need to activate the particular virtual
             environment every time, rather than immediately typing <i>jupyter
               notebook</i> in Terminal.</p>
           <p>If you do not want to skip installation troubles, the simplest way to use Python is to use <a href="https://colab.research.google.com/notebooks/welcome.ipynb">Google Colab</a>. However, you may lose the calculation results on Colab when you are disconnected from Internet.
           </p>
         </div>
-        <h3 id="sec1">1. Install<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;"> Follow the
-          instruction of <a href="https://www.tensorflow.org/install">TensorFlow</a>.
-          Tips are given below.
-          <ul>
-            <li> You will use <b>virtualenv</b> to install TensorFlow. This
-              means that you install Jupyter <b>below</b> the TensorFlow
-              folder, even if you have it elsewhere. See <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">this
-                post</a>. </li>
-            <li> If you want to skip the step (iii) in <a href="#sec2">Run</a>,
-              try the tricks of <a href="https://stackoverflow.com/questions/44176160/jupyter-notebooks-startup-and-stopping">this</a>
-              and <a href="https://jupyter-notebook.readthedocs.io/en/latest/public_server.html">that</a>.
-            </li>
-          </ul>
-          <p> One can work with other machine learning frameworks, other virtual
-            environments of Python, and other bash profiles.<sup><a href="#fn1"
-                id="ref1">1</a></sup>
-          </p>
-        </div>
         <h3 id="sec2">2. Launch<br>
         </h3>
-          <p>How to open a jupyter notebook, assuming we finished installation.</p>
-          <h3>2-1. Quick methods</h3>
+          <h4>2-1. Quick methods</h4>
           <div style="margin-left:30px; margin-right:30px;">
             <p>Text editors such as <i>Visual Studio Code</i> can open .ipynb files. Another simple way is to use Google Colab.
             </p>
           </div>
-          <h3>2-2. Pyenv-virtualenv</h3>
+          <h4>2-2. Pyenv-virtualenv</h4>
           <div style="margin-left:30px; margin-right:30px;">
-            <p>First go to the folder where your code is found. Check the installed virtual environments by</p>
+            <p>Here we explain how to open a jupyter notebook, assuming we finished installation in <a href="#sec4">Section 4</a>.</p>
+              <p>First go to the folder where your code is found. Check the installed virtual environments by</p>
             <div class="quote">
               <pre>$ pyenv virtualenvs</pre>
             </div>
@@ -102,13 +81,17 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
               <pre>jupyter notebook</pre>
             </div>
           </div>
-          <h3>2-3. TensorFlow</h3>
-        <div style="margin-left:30px; margin-right:30px;">
-          <p>i) Launch TensorFlow from Terminal <sup><a href="#fn2" id="ref2">2</a></sup></p>
+          <h4>2-3. TensorFlow</h4>
+          <div style="margin-left:30px; margin-right:30px;"> 
+            <p>To use TensorFlow, follow the <a href="https://www.tensorflow.org/install">official instruction</a>. We use <b>virtualenv</b> to install TensorFlow. In other words, you install Jupyter <b>below</b> the TensorFlow folder, even if you have Jupyter elsewhere; see <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">this
+            post</a>. Of course, one can work with other machine learning frameworks, other virtual
+              environments of Python, and other bash profiles.
+            </p>
+          <p>i) Launch TensorFlow from Terminal <sup><a href="#fn1" id="ref1">1</a></sup></p>
           <div class="quote">
             <pre>source ~/tensorflow/bin/activate</pre>
           </div>
-          <p>ii) Open Jupyter notebook <sup><a href="#fn3" id="ref3">3</a></sup></p>
+          <p>ii) Open Jupyter notebook <sup><a href="#fn2" id="ref2">2</a></sup></p>
           <div class="quote">
             <pre>jupyter notebook</pre>
           </div>
@@ -117,9 +100,11 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>jupyter notebook <i>filename</i>.ipynb</pre>
           </div>
           <p> iii) Copy &amp; paste the URL shown in Terminal to the web
-            browser:<br>
-            <br>
-            &nbsp;&nbsp; http://localhost:8888/?token=(something)<br>
+            browser:</p>
+            <div class="quote">
+              <pre>http://localhost:8888/?token=(something)</pre>
+            </div>
+            <p>To skip this step, try the tricks of <a href="https://stackoverflow.com/questions/44176160/jupyter-notebooks-startup-and-stopping">this</a> and <a href="https://jupyter-notebook.readthedocs.io/en/latest/public_server.html">that</a>.
           </p>
           <p> iv) We should terminate the virtual environment</p>
           <div class="quote">
@@ -137,10 +122,10 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           <p>Commands are executed by Shift+Return. "In []" becomes "[*]" during
             evaluating, and turns into "[number]" when it finishes. </p>
         </div>
-        <h3 id="sec4">4. Install Environment Isolation Tools<br>
+          <h3 id="sec4">4. Install pyenv-virtualenv<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
-          <p>Some people emphasize the importance of virtual environments, to
+          <p>People emphasize the importance of virtual environments, to
             check the consistency of python versions, package requirements and
             package installation trees. Several tools are available, such as <b>pyenv-virtualenv</b>, <b>pyenv-virtualenv</b>, <b>Anaconda</b> and <b>Pipenv</b>.
             Below I explain <b>pyenv-virtualenv</b>. </p>
@@ -152,9 +137,8 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <div class="quote">
               <pre>brew cleanup</pre>
             </div>
-          In case you find a permission error, try (see <a href="https://github.com/Homebrew/homebrew-core/issues/45009">this
-            post</a>)
-          <p></p>
+            <p>In case you find a permission error, try (see <a href="https://github.com/Homebrew/homebrew-core/issues/45009">this
+            post</a>)</p>
           <div class="quote">
             <pre>sudo chown -R $(whoami) $(brew --prefix)/*</pre>
           </div>
@@ -164,7 +148,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>pyenv install --list</pre>
           </div>
           <p>If the latest version is 3.x.y, you install it, change the python
-            version of the current user, and refresh the status.</p>
+              version of the current user, and refresh the status.<sup><a href="#fn3" id="ref3">3</a></sup></p>
           <div class="quote">
             <pre>pyenv install 3.x.y</pre>
             <pre>pyenv global 3.x.y</pre>
@@ -176,7 +160,11 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>python --version</pre>
             <pre>pip -V</pre>
           </div>
-          <p>Third, we install (the latest version of) <b>Jupyter</b>. However,
+            <p>Do not forget to switch the python version in pyenv to the latest one, because the system (default) python does not contain pip.<sup><a href="#fn4" id="ref4">4</a></sup></p>
+            <div class="quote">
+              <pre>pyenv global 3.x.y</pre>
+            </div>
+            <p>Third, we install (the latest version of) <b>Jupyter</b>. However,
             Jupyter is not in the pyenv's install list. A typical error is</p>
             <div class="quote">
               <pre>pyenv: jupyter: command not found</pre>
@@ -204,18 +192,21 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           </div>
         </div>
         <br>
-        <hr> <sup id="fn1">1</sup> The following line in the ~/.bash_profile
+        <hr> 
+          <sup id="fn1">1</sup> $ source <i>filename</i> (or $ . <i> filename</i>
+          ) executes the contents of <i>filename</i> in the current shell.<sup><a
+          href="#ref1">?</a></sup><br>
+          <sup id="fn2">2</sup> $ ipython <i>notebook</i> was an old version of $
+          jupyter <i> notebook</i>.<sup><a href="#ref2">?</a></sup><br>
+          <sup id="fn3">3</sup> The following line in the ~/.bash_profile
         changes the prompt of OSX Terminal session,<br>
         &nbsp; $&nbsp; eval "$(pyenv virtualenv-init -)"<br>
         because <i>eval</i> changes the environment of the main bash shell.
         Since one cannot "deactivate" pyenv-virtualenv like virtualenv, one
         should either delete the line, or use<br>
         &nbsp; $&nbsp; export PYENV_VIRTUALENV_DISABLE_PROMPT=1 <br>
-        <sup id="fn2">2</sup> $ source <i>filename</i> (or $ . <i> filename</i>
-        ) executes the contents of <i>filename</i> in the current shell.<sup><a
-            href="#ref1">?</a></sup><br>
-        <sup id="fn3">3</sup> $ ipython <i>notebook</i> was an old version of $
-        jupyter <i> notebook</i>.<sup><a href="#ref2">?</a></sup><br>
+          <sup id="fn4">4</sup> There can be extra troubles in Ubuntu.<sup><a
+          href="#ref4">?</a></sup><br>
         <p> </p>
       </div>
     </div>
