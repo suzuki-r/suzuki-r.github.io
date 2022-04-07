@@ -30,7 +30,7 @@ a:hover {color: tomato;}
 .cv_aff{margin-top:12px; font-size:large;  font-weight:600; color:tomato;}
 .res_materials{padding:0; margin: 0 0 0 10px; list-style-type:none;}
 .res_materials  li{padding:0; margin: 0 0 10px 0; list-style-type:none;}
-.res_materials .notebook li{padding:0; margin: 0 0 0 0; list-style-type:none;}
+.res_materials .notebook li{padding:0; margin: 5px 0 0 0; list-style-type:none;}
 .workshops p{margin:0 0 0 10px; padding:0;}
 .gh_slides p{margin:0 0 20px 10px; padding:0;}
 .res_slides{padding:0; margin: 0 0 0 10px; list-style-type:none;}
