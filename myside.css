@@ -30,10 +30,14 @@ a:hover {color: tomato;}
 .cv_aff{margin-top:12px; font-size:large;  font-weight:600; color:tomato;}
 .res_materials{padding:0; margin: 0 0 0 10px; list-style-type:none;}
 .res_materials  li{padding:0; margin: 0 0 10px 0; list-style-type:none;}
+.res_materials .notebook li{padding:0; margin: 0 0 0 0; list-style-type:none;}
 .workshops p{margin:0 0 0 10px; padding:0;}
 .gh_slides p{margin:0 0 20px 10px; padding:0;}
 .res_slides{padding:0; margin: 0 0 0 10px; list-style-type:none;}
 .res_slides li{padding:0; margin: 0 0 10px 0; list-style-type:none;}
+.reading-mat{margin:40px 0 20px 0; padding:0;}
+.reading-mat > p {margin:10px; padding:0;}
+.reading-mat > ol > li {margin:10px; padding:0;}
 .remarks{margin: 10px 0 20px 0; padding:8px 32px; background:Azure none repeat scroll 0% 50%;}
 .remarks p{margin:0; padding:0;}
 .remarks ul{margin:6px 0 0 32px; padding:0; list-style-type:none;}
