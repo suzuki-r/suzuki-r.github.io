@@ -34,7 +34,8 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <a href="#sec2">2. Launch</a><br>
             <a href="#sec3">3. Code and Run</a><br>
             <a href="#sec4">4. Install pyenv-virtualenv</a><br>
-          </div>
+            <a href="#sec5">5. Uninstall</a><br>
+            </div>
         </div>
         <br>
         <hr style="width: 95%;">
@@ -131,8 +132,9 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             Below I explain <b>pyenv-virtualenv</b>. </p>
           <p>First, we install or upgrade pyenv by Homebrew,</p>
           <div class="quote">
-              <pre>brew upgrade pyenv</pre>
-          </div>
+              <pre>brew install pyenv</pre>
+              <pre>brew install pyenv-virtualenv</pre>
+            </div>
             <p>To install Homebrew on Linux, see <a href="https://stackoverflow.com/questions/33353618/can-i-use-homebrew-on-ubuntu">SE</a>. The mirror in <a href="https://mirror.tuna.tsinghua.edu.cn/help/homebrew/">Tsinghua</a> is useful if you are inside China. The system may automatically launch </p>
             <div class="quote">
               <pre>brew cleanup</pre>
@@ -169,28 +171,42 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <div class="quote">
               <pre>pyenv: jupyter: command not found</pre>
             </div>
-          <p>Jupyter is included in the package called Anaconda, which can be
-            installed by pyenv. Check available virtual environments and install
-            the latest version of Anaconda,</p>
-          <div class="quote">
-            <pre>pyenv virtualenvs</pre>
-            <pre>pyenv install anaconda3-20yy.mm</pre>
-          </div>
-            <p>We create a virtual environment under the name <i>environment_name</i>. </p>
+            <p>We solve this problem under a virtual environment. For this purpose, let us create a virtual environment under the name <i>environment_name</i>. </p>
+            <div class="quote">
+              <pre>pyenv virtualenv <i>python_version</i> <i>environment_name</i></pre>
+            </div>
+            <p>If we omit <i>python_version</i>, then the system uses the default environment specified by ~/.pyenv/version. We can check newly created environments by "$ pyenv versions". </p>
+            <div class="quote">
+              <pre>pyenv activate <i>environment_name</i></pre>
+              <pre>python3 -m pip install jupyter</pre>
+            </div>
+            <p>We installed the Jupyter module under your environment. The last command is needed to avoid the error <i>Defaulting to user installation because normal site-packages is not writeable</i>; see <a href="https://itsmycode.com/solved-defaulting-to-user-installation-because-normal-site-packages-is-not-writeable/">this website</a>. Other modules can be installed in a similar way.</p>
+              <p>You should turn on a virtual environment whenever you launch a jupyter notebook,</p>
               <div class="quote">
-                <pre>pyenv virtualenv <i>python_version</i> <i>environment_name</i></pre>
+                <pre>pyenv activate <i>environment_name</i></pre>
+                <pre>jupyter notebook</pre>
               </div>
-            <p>If we omit <i>python_version</i>, then the system uses the default environment specified by ~/.pyenv/version. We can check newly created environments by "$ pyenv versions". We should turn on (and off) a virtual environment before using Jupyter</p>
-          <div class="quote">
-            <pre>pyenv activate <i>environment_name</i></pre>
-            <pre>jupyter notebook</pre>
-            <pre>pyenv deactivate</pre>
-          </div>
+            <p>You can deactivate an environment by</p>
+            <div class="quote">
+              <pre>pyenv deactivate</pre>
+            </div>
+          <h3 id="sec5">5. Uninstall<br>
+          </h3>
           <p>We can remove the old version of Anaconda, python or unwanted virtual environments by</p>
           <div class="quote">
             <pre>pyenv uninstall anaconda3-x.y.z</pre>
           </div>
-            <p>Another method is to remove a folder from ~/.pyenv/versions/ by hand.</p>
+          <p>If we remove pyenv and pyenv-virtualenv, execute the following steps. First delete folders,</p>
+            <div class="quote">
+            <pre>sudo rm -rf ~/.pyenv</pre>
+            </div>
+          <p>Uninstall pyenv and pyenv-virtualenv using homebrew,</p>
+            <div class="quote">
+            <pre>brew uninstall pyenv-virtualenv</pre>
+            <pre>brew uninstall pyenv</pre>
+            <pre>brew list</pre>
+            </div>
+          <p>The last command checks whether you uninstalled pyenv and pyenv-virtualenv successfully.</p>
         </div>
         <br>
         <hr> 
