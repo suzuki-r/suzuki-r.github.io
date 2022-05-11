@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="mypane.css">
     <title>Python</title>
     <style>
-      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px; 
+      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px;
         margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
         .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;
         text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
@@ -82,7 +82,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         </h4>
         <div style="margin-left:30px; margin-right:30px;">
           <p>
-          Pyenv manages different versions of python. We should use pyenv-virtualenv in order to manage virtual environments. 
+          Pyenv manages different versions of python. We should use pyenv-virtualenv in order to manage virtual environments.
           Suppose you installed pyenv, pyenv-virtualenv, the latest version of python, set PATH, and created a new virtal environment <i>environment_name</i> (see <a href="Jupyter.html">this page</a> for how to install).
       <!-- To check the current version of python inside pyenv,</p>
           <div class="quote">
@@ -144,18 +144,23 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
 <li>See <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">Data Structures</a> for the dictionary data type</li>
 <li>To extract the value for the key of a dictionary, use get(key,0). It returns 0 when no such key exists</li>
 </ul>
-          <p><u><b>Decimal and binary</b></u>&nbsp; 
+          <p><u><b>Decimal and binary</b></u>&nbsp;
               <ul>
               <li>int(b) returns b as a decimal number; e.g. 0010 to 10</li>
               <li>int(b, 2) returns b as a binary number; e.g. 0010 to 2</li>
                </ul>
            Use format() to convert a decimal number to a text string keeping the leading zero’s. For example, str(’{:05b}’.format(10)) keeps five numbers.</p>
+           <p><u><b>Conditional statements</b></u>&nbsp; </p>
+                     <ul>
+               <li>Python does not have Switch. Use If .. elif ... else. </li>
+               <li>Beware the syntax, If var==0 or var==1 (correct), If var==0 or 1 (wrong)</li>
+                </ul>
           <p><u><b>Misc</b></u>&nbsp; </p>
                     <ul>
               <li>One can break a (long) line by inserting \ at the end. </li>
               <li>Single-line comments can be created by #</li>
                <li>Multi-line comments can be created by triple quotations (under some <a href="https://stackoverflow.com/questions/7696924/is-there-a-way-to-create-multiline-comments-in-python">limitations</a>)</li>
-               </ul>    
+               </ul>
 </div>
         <h3 id="sec4">4. Compiler<br>
         </h3>
