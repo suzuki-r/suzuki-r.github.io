@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="mypane.css">
     <title>Qiskit basics</title>
     <style>
-      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px; 
+      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px;
         margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
         .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;
         text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
@@ -31,9 +31,10 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <div align="center">
           <div style="margin: 0px auto; text-align: left; width: 33%;">
             <a href="#sec1">1. Introduction</a><br>
-            <a href="#sec2">2. Tips</a><br>
+            <a href="#sec2">2. Install</a><br>
             <a href="#sec3">3. Advanced Circuits</a><br>
-            <a href="#sec4">4. Pip and Pipenv</a><br>
+            <a href="#sec4">4. Measurements</a><br>
+            <a href="#sec5">5. Tips</a><br>
           </div>
         </div>
         <br>
@@ -41,6 +42,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <h3 id="sec1">1. Introduction<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
+          <p>Qiskit it an open software-development kit for quantum computation.</p>
           <p>The <b>backend</b> is the entity which executes quantum programs, like mathkernel in Mathematica. We choose a backend either from a real-device or a simulator. Qiskit has four <a href="https://qiskit.org/documentation/stable/0.24/the_elements.html">elements</a></p>
 <ul>
 <li>Terra, access hardware</li>
@@ -53,25 +55,43 @@ There are two simulator backends, one is Qiskit Aer (if executed on your local c
 The most basic method is <b>aer_simulator</b> (without option). <a href="https://qiskit.org/documentation/tutorials/simulators/1_aer_provider.html">Aer</a> has four method options, stabilizer, statevector, density_matrix and matrix_product_state. We may choose <b>qasm_simulator</b> and print the measurement results of each shot. QASM Simulator is essentially same as IBMQ QASM Simulator, which is the provider of a real device of IBM. The max number of shots is 8192 in ibmq_qasm_simulator, and 10^7 in qasm_simulator.<br>
 (QASM = Quantum ASseMbly language )</p>
         </div>
-        <h3 id="sec2">2. Tips<br>
+        <h3 id="sec2">2. Install<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>
-To begin with, we should install qiskit to our (local/virtual/cloud) environment. From time to time we should also upgrade it to the latest version.
+To begin with, we should install qiskit to our (local/virtual/cloud) environment.
           </p>
           <div class="quote">
             <pre>!pip install qiskit</pre>
-<pre># To upgrade qiskit, use !pip install qiskit --upgrade</pre>
-<pre># Install Matplotlib for plotting</pre>
-<pre>!pip install pylatexenc</pre>
-<pre>!pip install matplotlib</pre>
-<pre># version check</pre>
-<pre>!pip show qiskit</pre>
+            <pre>!pip install pylatexenc</pre>
+            <pre>!pip install matplotlib</pre>
         </div>
-        <ul>
-<li>X gate is [[0,1],[1,0]], which flips qubit</li>
-<li>We should reset the circuit inside <i>for</i> loop</li>
-</ul>
+<p>
+  Here I assumed that you run these codes <i>inside</i> a Jupyter notebook file.
+  Namely, you created a virtual environment, opened a jupyter notebook, and installed Qiskit modules as above.
+  Suppose that you want to run another python script in your code, and the new code contains</p>
+  <div class="quote">
+    <pre>from qiskit import *</pre>
+  </div>
+<p>
+  It is likely that you get the warning, <i>ModuleNotFoundError: No module named 'qiskit'</i>.
+  This is because <i>pip</i>'s ' are created for each virtual environment of Python.
+  Usually, <i>pip install XXX</i> installs the module XXX to the Python specified by <i>which pip</i>, like "/usr/local/bin/python3".
+  When you created a virtual environment, you need to install modules using the pip associated to that Python.
+  For this purpose, execute
+</p>
+  <div class="quote">
+    <pre>python3 -m pip install XXX</pre>
+  </div>
+<p>
+  inside the virtual environment (this is exactly what we did when installing jupyter notebook!)
+  See <a href="https://stackoverflow.com/questions/60782785/python3-m-pip-install-vs-pip3-install">this article</a> for more information.
+</p>
+<p>
+  It is not recommended to download the source code for the module, and add the system path using sys.path.append().
+  The modules are only partially installed in this method, Python may not be able to resolve the dependency.
+  Finally, do not forget upgrading modules to the latest version, when necessary.
+</p>
 </div>
         <h3 id="sec3">3. Advanced Circuits<br>
         </h3>
@@ -98,6 +118,15 @@ The method to_instruction() converts a set of custom-made gates into an “instr
 <li> the output format is a tuple of (text, integer) representing (bit_string, count)</li>
 <li> execute().result() gives a <i>dict</i> data type of Python </li>
 </ul>
+</div>
+<h3 id="sec5">5. Tips<br>
+</h3>
+<div style="margin-left:30px; margin-right:30px;">
+  <ul>
+  <li>X gate is [[0,1],[1,0]], which flips qubit</li>
+  <li>We should reset the circuit inside <i>for</i> loops</li>
+  </ul>
+</div>
           <p>
 
           </p>

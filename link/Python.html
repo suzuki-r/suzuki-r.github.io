@@ -105,6 +105,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           <div class="quote">
             <pre>pyenv deactivate</pre>
         </div>
+      </div>
 <h3 id="sec3">3. Tips<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
@@ -126,12 +127,12 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
 <li>a more general format is L[start:end:step], thus L[::-1] shows the list elements in the reverse order</li>
 <li>Lists cannot be added or subtracted. Should use np.array</li>
 </ul>
-          <p><u><b>Loop</b></u>&nbsp; “for” loop should be written in the format</p>
+          <p><u><b>Loop</b></u>&nbsp; “for” loop should be written in the format,</p>
             <div class="quote">
             <pre>for (var) in (iterable object):</pre>
         </div><br>
     and keep indentation within the scope of the loop. Strictly speaking, this corresponds to <i>foreach</i> in C++</p>
-          <p><u><b>Range</b></u>&nbsp;  range(start, stop, step) is an iterable object, which should be used with caution.
+          <p><u><b>Range</b></u>&nbsp;  range(start, stop, step) is an iterable object, which should be used with caution.</p>
 <ul>
 <li>it returns a list of integers as the range type; e.g. list(range(0, 10, 2)) gives [0,2,4,6,8]</li>
 <li>all arguments must be integers</li>
@@ -155,7 +156,23 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
                <li>Python does not have Switch. Use If .. elif ... else. </li>
                <li>Beware the syntax, If var==0 or var==1 (correct), If var==0 or 1 (wrong)</li>
                 </ul>
-          <p><u><b>Misc</b></u>&nbsp; </p>
+                <p><u><b>Class</b></u>&nbsp;  A class can be defined as follows,</p>
+                <div class="quote">
+                <pre>class ClassA(ClassB):  <br />
+&nbsp;&nbsp;&nbsp; def __init__(self):  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>do something</i>  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super().__init__(arg):
+</pre></div>
+<p>
+  The first line constructs Class A inherited from Class B, and there is no optional argument.
+In the second line, __init__(self) constructs an instance of Class A.
+In the last line, super().__init__(arg) construct an instance of Class B with the argument arg.
+One should not confuse a class with a function. For more information, read the official documents like 
+<a href="https://docs.python.org/3/tutorial/classes.html#inheritance">inheritance</a> and
+<a href="https://docs.python.org/3/library/functions.html#super">super</a>.
+</p>
+            <br>
+                            <p><u><b>Misc</b></u>&nbsp; </p>
                     <ul>
               <li>One can break a (long) line by inserting \ at the end. </li>
               <li>Single-line comments can be created by #</li>
