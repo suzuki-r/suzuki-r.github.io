@@ -94,8 +94,11 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           </div>
           <h4>2-3. TensorFlow</h4>
           <div style="margin-left:30px; margin-right:30px;">
-            <p>To use TensorFlow, follow the <a href="https://www.tensorflow.org/install">official instruction</a>. We use <b>virtualenv</b> to install TensorFlow. In other words, you install Jupyter <b>below</b> the TensorFlow folder, even if you have Jupyter elsewhere; see <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">this
-            post</a>. Of course, one can work with other machine learning frameworks, other virtual
+            <p>To use TensorFlow, follow the <a href="https://www.tensorflow.org/install">official instruction</a>.
+              There is also an instruction for Apple Silicon devices <a href="https://towardsdatascience.com/installing-tensorflow-and-jupyter-notebook-on-apple-silicon-macs-d30b14c74a08">here</a>.
+              We use <b>virtualenv</b> to install TensorFlow. In other words, you install Jupyter <b>below</b> the TensorFlow folder, even if you have Jupyter elsewhere; see <a href="https://stackoverflow.com/questions/37061089/trouble-with-tensorflow-in-jupyter-notebook">this
+            post</a>.
+            Of course, one can work with other machine learning frameworks, other virtual
               environments of Python, and other bash profiles.
             </p>
           <p>i) Launch TensorFlow from Terminal <sup><a href="#fn1" id="ref1">1</a></sup></p>
@@ -190,7 +193,11 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
               <pre>pyenv activate <i>environment_name</i></pre>
               <pre>python3 -m pip install jupyter</pre>
             </div>
-            <p>We installed the Jupyter module under your environment. The last command is needed to avoid the error <i>Defaulting to user installation because normal site-packages is not writeable</i>; see <a href="https://itsmycode.com/solved-defaulting-to-user-installation-because-normal-site-packages-is-not-writeable/">this website</a>. Other modules can be installed in a similar way.</p>
+            <p>We installed the Jupyter module under your environment.
+              The last command is needed to avoid the error <i>Defaulting to user installation because normal site-packages is not writeable</i>;
+              see <a href="https://itsmycode.com/solved-defaulting-to-user-installation-because-normal-site-packages-is-not-writeable/">this website</a>.
+              If the Jupyter module is not installed on the working environment, Python may launch the Jupyter installed on your system, which can cause extra troubles.
+              Other modules can be installed in a similar way.</p>
               <p>You should turn on a virtual environment whenever you launch a jupyter notebook,</p>
               <div class="quote">
                 <pre>pyenv activate <i>environment_name</i></pre>
@@ -212,7 +219,40 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <p>
               One can check the difference between two notebooks by installing <a href="https://github.com/jupyter/nbdime">nbdime</a>.
             </p>
-            <h3 id="sec6">6. Uninstall<br>
+            <h4>5-1. Localize Jupyter for each pyenv version</h4>
+            <p>
+              Pyenv tries to use the same jupyter kernel for any virtual environments; see <a href="https://github.com/pyenv/pyenv/issues/1675">discussion here</a>.
+              This can be avoided by installing <a href="https://github.com/aiguofer/pyenv-jupyter-kernel">this plugin</a>.
+            </p>
+            <h4>5-2. Apple Silicon problems</h4>
+            <p>
+              Migration from Intel (x64) to Apple Silicon (ARM) causes a lot of problems for OSX users.
+            </p><p>
+              First, you need to reinstall Homebrew; see <a href="https://earthly.dev/blog/homebrew-on-m1/">this page</a>.
+              Second, when two homebrew folders coexist (/usr/local/ for x64 and /opt/homebrew/ for ARM), some python packages find the old folder and cause errors.
+              This can be avoided by deleting the wrong package from x64 homebrew; see <a href="https://github.com/pyenv/pyenv/issues/2573">discussion here</a>.
+              Third, before installing python you should delete cache to avoid downloading x64 packages.
+              For example,
+            </p>
+            <div class="quote">
+              <pre>/usr/local/bin/brew uninstall <i>package_name</i></pre>
+            </div>
+            <p>for brew and</p>
+            <div class="quote">
+              <pre>pip cache purge</pre>
+              <pre>pyenv install 3.11.2</pre>
+            </div>
+            <p>
+              for python and pyenv.
+              Fourth, jupyter kernel may still die immediately after launch; see <a href="https://blog.roboflow.com/how-to-run-jupyter-notebooks-on-a-mac-m1/">this page</a> to fix it.
+            </p>
+            <p>
+              In my environment, several python versions are found at $HOME/Library/Python/X.Y/.
+              These files seem to be installed by "pip --user" for Intel CPU, but they cannot be removed by "pip uninstall" anymore.
+              Instead of deleting the files (and reinstalling XCode Command Line Tools), I deleted PYTHONPATH from $HOME/.zshrc.
+              Then "jupyter notebook" launches the newly installed kernel.
+            </p>
+          <h3 id="sec6">6. Uninstall<br>
           </h3>
           <p>We can remove the old version of Anaconda, python or unwanted virtual environments by</p>
           <div class="quote">
