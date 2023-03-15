@@ -231,26 +231,39 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
               First, you need to reinstall Homebrew; see <a href="https://earthly.dev/blog/homebrew-on-m1/">this page</a>.
               Second, when two homebrew folders coexist (/usr/local/ for x64 and /opt/homebrew/ for ARM), some python packages find the old folder and cause errors.
               This can be avoided by deleting the wrong package from x64 homebrew; see <a href="https://github.com/pyenv/pyenv/issues/2573">discussion here</a>.
-              Third, before installing python you should delete cache to avoid downloading x64 packages.
-              For example,
+              For example, one can remove a package by
             </p>
             <div class="quote">
               <pre>/usr/local/bin/brew uninstall <i>package_name</i></pre>
             </div>
-            <p>for brew and</p>
+            <p>
+              or completely remove the old brew by (cf. <a href="https://stackoverflow.com/questions/70989823/uninstall-homebrew-from-usr-local-without-affecting-opt-homebrew">this page</a>)
+            </p>
+            <div class="quote">
+              <pre>sudo /bin/zsh </pre>
+              <pre>arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"</pre>
+            </div>
+            <p>
+              Third, before installing python you should delete cache to avoid downloading x64 packages.
+            </p>
             <div class="quote">
               <pre>pip cache purge</pre>
               <pre>pyenv install 3.11.2</pre>
             </div>
             <p>
               for python and pyenv.
-              Fourth, jupyter kernel may still die immediately after launch; see <a href="https://blog.roboflow.com/how-to-run-jupyter-notebooks-on-a-mac-m1/">this page</a> to fix it.
+              Fourth, jupyter kernel may still die immediately after launch;
+              see <a href="https://blog.roboflow.com/how-to-run-jupyter-notebooks-on-a-mac-m1/">this page</a> to fix it.
             </p>
             <p>
               In my environment, several python versions are found at $HOME/Library/Python/X.Y/.
               These files seem to be installed by "pip --user" for Intel CPU, but they cannot be removed by "pip uninstall" anymore.
               Instead of deleting the files (and reinstalling XCode Command Line Tools), I deleted PYTHONPATH from $HOME/.zshrc.
               Then "jupyter notebook" launches the newly installed kernel.
+            </p>
+            <p>
+              Note that ZSH has several environment files. In particular, $HOME/.zprofile is loaded earlier than $HOME/.zshrc;
+              see <a href="https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where">here</a>.
             </p>
           <h3 id="sec6">6. Uninstall<br>
           </h3>
