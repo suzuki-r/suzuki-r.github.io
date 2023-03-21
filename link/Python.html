@@ -106,12 +106,21 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>pyenv deactivate</pre>
         </div>
       </div>
+      <h4>Switching iPython kernel<br>
+      </h4>
+      <p>Even if you launch a jupyter notebook from inside a virtual environment, jupyter uses its default kernel.
+        In order to switch to the ipython kernel of your new environment, you should click "Kernel > Switch Kernel" in the menu.
+        Alternatively, you can use the command (see <a href="https://stackoverflow.com/questions/47972876/choose-kernel-from-the-terminal-when-launching-jupyter-notebook-can-it-be-done">here</a>)
+      </p>
+      <div class="quote">
+        <pre>jupyter notebook --NotebookApp.kernel_manager_class=my_kernel </pre>
+     </div>
       <h4>Pip's in pyenv-virtualenv<br>
       </h4>
       <div style="margin-left:30px; margin-right:30px;">
         <p>Pip exists for each virtual environment of Python.
           Sometimes, pyenv-virtualenv chooses the correct Python but an incorrect Pip, which causes a ModuleNotFoundError.
-          To avoid this problem one should <i>always</i> use,
+          To avoid this problem, one may try
         </p>
         <div class="quote">
           <pre>!python3 -m pip install XXX</pre>

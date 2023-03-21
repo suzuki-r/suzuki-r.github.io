@@ -215,15 +215,33 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             </h3>
             <p>
               Check if your problem is related to the virtual environment or not.
+              The difference between two notebooks can be checked by installing <a href="https://github.com/jupyter/nbdime">nbdime</a>.
+            </p>
+            <h4>5-1. Error: module not found</h4>
+            <p>
+              One of the most common reason is that you did not switch iPython kernel.
+              Check "Kernels > Switch Kernel" in the menu of Jupyter notebook.
             </p>
             <p>
-              One can check the difference between two notebooks by installing <a href="https://github.com/jupyter/nbdime">nbdime</a>.
+              If it does not solve the problem, the reason can be more complicated. For example
             </p>
-            <h4>5-1. Localize Jupyter for each pyenv version</h4>
-            <p>
-              Pyenv tries to use the same jupyter kernel for any virtual environments; see <a href="https://github.com/pyenv/pyenv/issues/1675">discussion here</a>.
-              This can be avoided by installing <a href="https://github.com/aiguofer/pyenv-jupyter-kernel">this plugin</a>.
-            </p>
+            <ul>
+              <li>
+                Pyenv tries to use the same jupyter kernel for any virtual environments; see <a href="https://github.com/pyenv/pyenv/issues/1675">discussion here</a>.
+                You can localize Jupyter for each environment to avoid this problem.
+                Try installing <a href="https://github.com/aiguofer/pyenv-jupyter-kernel">this plugin</a>.
+              </li>
+              <li>
+                Sometimes pip and Jupyter notebook use different paths or kernels.
+                This means that, after you install some modules by pip inside a Jupyter notebook, the Jupyter kernel cannot detect the modules.
+                See <a href="https://stackoverflow.com/questions/63774490/jupyter-not-recognising-numpy-using-homebrew-pyenv">this discussion</a>.
+              </li>
+              <li>
+                Another possible workaound is to write a PATH to shims and not bin.
+                A shim is an English word for something like a washer.
+                See <a href="https://mungingdata.com/python/how-pyenv-works-shims/">this page</a> to find what shims do in pyenv.
+              </li>
+            </ul>
             <h4>5-2. Apple Silicon problems</h4>
             <p>
               Migration from Intel (x64) to Apple Silicon (ARM) causes a lot of problems for OSX users.
