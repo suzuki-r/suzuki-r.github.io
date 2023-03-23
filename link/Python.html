@@ -78,24 +78,46 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <pre>pipenv install cython</pre>
         </div>
         </div>
-        <h4>Environment Isolation Tools (pyenv-virtualenv)<br>
+        <h4>Environment Isolation Tools (1. pyenv)<br>
         </h4>
         <div style="margin-left:30px; margin-right:30px;">
           <p>
-          Pyenv manages different versions of python. We should use pyenv-virtualenv in order to manage virtual environments.
-          Suppose you installed pyenv, pyenv-virtualenv, the latest version of python, set PATH, and created a new virtal environment <i>environment_name</i> (see <a href="Jupyter.html">this page</a> for how to install).
-      <!-- To check the current version of python inside pyenv,</p>
+            Pyenv manages different versions of python. Both pyenv and pyenv-virtualenv can be installed by brew in OSX,
+          </p>
           <div class="quote">
-            <pre>pyenv version</pre>
+            <pre>brew install pyenv</pre>
+            <pre>brew install pyenv-virtualenv</pre>
+          </div>
+          <p>
+            See <a href="https://github.com/pyenv/pyenv">the official website</a> for setting up PATH.
+            To check which version of pythons are available,
+          </p>
+          <div class="quote">
+            <pre>pyenv install --list</pre>
+          </div>
+          <p>
+            To install (or uninstall) a python version in pyenv,
+          </p>
+          <div class="quote">
+            <pre>pyenv (un)install 3.x.y</pre>
+          </div>
+          <p>
+            To check all the installed versions of pythons inside pyenv,
+          </p>
+          <div class="quote">
+            <pre>pyenv versions</pre>
+          </div>
+    <p>To create a new virtal environment  using the current version of python,</p>
+              <div class="quote">
+                <pre>pyenv virtualenv environment_name</pre>
+            </div -->
         </div>
-<p>The option <i>pyenv versions</i> shows all the installed versions. To check all the existing virtal environments,</p>
-          <div class="quote">
-            <pre>pyenv virtualenvs</pre>
-        </div>
-<p>To create a new virtal environment  using the current version of python,</p>
-          <div class="quote">
-            <pre>pyenv virtualenv environment_name</pre>
-        </div -->
+        <h4>Environment Isolation Tools (2. pyenv-virtualenv)<br>
+        </h4>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>
+          Pyenv-virtualenv manages virtual environments.
+          Suppose you installed pyenv, pyenv-virtualenv, the latest version of python, set PATH, and created a new virtal environment <i>environment_name</i> (see <a href="Jupyter.html">this page</a> for how to install).</p>
 <p>To activate the virtal environment <i>environment_name</i>, and launch a jupyter notebook,</p>
           <div class="quote">
             <pre>pyenv activate environment_name</pre>
