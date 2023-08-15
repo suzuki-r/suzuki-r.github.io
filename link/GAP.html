@@ -5,8 +5,12 @@
     <link rel="stylesheet" type="text/css" href="mypane.css">
     <title>GAP</title>
     <style>
-      .comments{margin: 0px auto; text-align: left; width: 90%; background-color:white;}
-  </style>
+      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px;
+        margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
+        .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;
+        text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
+        div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:white}
+    </style>
   </head>
   <body>
     <div class="wrapper">
@@ -51,11 +55,20 @@
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>Open Terminal, go to the GAP folder and type</p>
-          <p>&nbsp;&nbsp;&nbsp; &gt; ./gap<br>
-            or <br>
-            &nbsp;&nbsp;&nbsp; &gt; sh bin/gap.sh</p>
-          <p>To finish the session, type</p>
-          <p>&nbsp;&nbsp;&nbsp; gap&gt; quit;</p>
+          <div class="quote">
+            <pre> ./gap</pre>
+          </div>
+          <p>or</p>
+          <div class="quote">
+            <pre> sh bin/gap.sh</pre>
+          </div>
+          <p>
+            Note that, even thought SHELL knows the path to GAP, one cannot launch it ourside its main folder (at least in OSX).
+            To finish the session, type
+          </p>
+          <div class="quote">
+            <pre> gap&gt; quit;</pre>
+          </div>
         </div>
         <h3 id="sec3">3. Basics<br>
         </h3>
@@ -77,21 +90,39 @@
         <h3 id="sec4">4. Read and Write<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
+          <p>
+            It is not possible to call GAP from an external program such as <i>Mathematica</i>; see the discussion <a href="https://stackoverflow.com/questions/8544946/mathematica-and-gap-is-there-an-interface">here</a>.
+            An alternative option is to use GAP inside SageMath, but you may need to rewrite the code.
+            Therefore, in order to run the GAP code as it is, one must always launch GAP from Terminal (in OSX).
+          </p>
           <p><b>Reading:</b> To read the file stored in "./prog/code.txt", type</p>
-          <p>&nbsp;&nbsp;&nbsp; gap&gt; Read("./prog/code.txt");</p>
+          <div class="quote">
+            <pre> gap&gt; Read("./mycode/calc.txt");</pre>
+          </div>
           <p>Note that Read() returns no output. No results will be displayed.<br>
             If one wants to read the content without evaluating it, type</p>
-          <p>&nbsp;&nbsp;&nbsp; gap&gt; Exec("cat ./prog/code.txt");</p>
-          <p><b>Writing:</b> There are several ways to write out the results.</p>
-          <p>&nbsp;&nbsp;&nbsp; gap&gt; PrintTo(filename,"...");<br>
-            &nbsp;&nbsp;&nbsp; gap&gt; AppendTo(filename,"..."); </p>
-          <p>will automatically create the file <i>filename</i> and keep adding
-            the contents.<br>
-            Other commands are </p>
-          <p>&nbsp;&nbsp;&nbsp; gap&gt; LogTo("filename")<br>
-            &nbsp;&nbsp;&nbsp; gap&gt; InputLogTo("filename")</p>
-          <p>LogTo() writes out all inputs and outputs to the file <i>filename</i>,
-            and InputLogTo() writes all input commands to the file.</p>
+          <div class="quote">
+            <pre> gap&gt; Exec("cat ./prog/code.txt");</pre>
+          </div>
+          <p><b>Writing:</b> There are a few ways to write out the results. The first way is to type</p>
+          <div class="quote">
+            <pre> gap&gt; PrintTo("filename", ...);</pre>
+            <pre> gap&gt; AppendTo("filename", ...);</pre>
+          </div>
+          <p>Note that PrintTo() deletes the existing contents. The second way is to type</p>
+          <div class="quote">
+            <pre> gap&gt; gap&gt; LogTo("filename");</pre>
+            <pre> gap&gt; gap&gt; LogTo();</pre>
+          </div>
+          <p>
+            This command writes out all standard outputs between two LogTo()'s.
+            Note that Read() generates no standard output, so LogTo() gives nothing.
+            If you want to distinguish the input and output of GAP, type
+          </p>
+          <div class="quote">
+            <pre> gap&gt; InputLogTo("filename");</pre>
+            <pre> gap&gt; OutputLogTo("filename");</pre>
+          </div>
         </div>
         <h3 id="sec5">5. Notation<br>
         </h3>
@@ -115,6 +146,6 @@
         <hr> <br>
       </div>
     </div>
-    
+
   </body>
 </html>
