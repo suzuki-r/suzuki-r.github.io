@@ -19,11 +19,12 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <div class="sidemenu"><a href="old.html" target="_top">Old</a></div>
         <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
         <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
-         <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
-         <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+        <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
+        <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
         <div class="sidemenu_on"><a href="Python.html" target="_top">Python</a></div>
-         <div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>
-         <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
+        <div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>
+        <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
+        <div class="sidemenu"><a href="SageMath.html" target="_top">SageMath</a></div>
       </div>
       <div class="contents_sub">
         <h2 style="text-align: center;">Python basics</h2>
@@ -66,14 +67,23 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         </h4>
         <div style="margin-left:30px; margin-right:30px;">
           <p>
-          Pip is a <i>Package Installer for Python</i>. More precisely pip is for python3.x, and pip2 is for python 2.x. If we want to install a package on Python2, use pip2. Some examples are</p>
+            Pip is a <i>Package Installer for Python</i>. More precisely pip is for python3.x, and pip2 is for python 2.x.
+            If we want to install a package on Python2, use pip2. Some examples are
+          </p>
            <div class="quote">
             <pre>pip2 install cython</pre>
             <pre>pip2 install PyOpenGL</pre>
             <pre>pip install pygame</pre>
             <pre>pip install dlib</pre>
         </div>
-<p>When using virtual environments (pyenv-virtualenv, pipenv, anaconda, etc), we should first activate an environment, then install the package. For example, installing via pip (without virtualization) is different from installing via pipenv. If we want to install a package inside pipenv, type</p>
+        <p>
+          If you want to check which (legacy) versions of the package (e.g. numpy) is available, use (see <a href="https://stackoverflow.com/questions/25958065/check-version-of-pip-packages-available-before-installing">here</a>)
+        </p>
+         <div class="quote">
+          <pre>pip install --use-deprecated=legacy-resolver numpy==</pre>
+      </div>
+        <p>When using virtual environments (pyenv-virtualenv, pipenv, anaconda, etc), we should first activate an environment, then install the package.
+          For example, installing via pip (without virtualization) is different from installing via pipenv. If we want to install a package inside pipenv, type</p>
           <div class="quote">
             <pre>pipenv install cython</pre>
         </div>

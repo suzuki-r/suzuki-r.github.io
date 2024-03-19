@@ -1,1 +1,219 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html lang="EN-US">  <head>    <meta http-equiv="content-type" content="text/html; charset=utf-8">    <link rel="stylesheet" type="text/css" href="mypane.css">    <title>Math Kernel</title>    <style type="text/css">	h1 {text-align: center;} 	h2 {text-align: center;}	h3 {color: darkgreen;}	.quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px; 	margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}  .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;        text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}  </style>  </head>  <body>    <div class="wrapper">      <div class="sidenav">				<div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>				<div class="sidemenu"><a href="old.html" target="_top">Old</a></div>				<div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>				<div class="sidemenu_on"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>				<div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>				<div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>				<div class="sidemenu"><a href="Python.html" target="_top">Python</a></div>				<div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>				<div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>      </div>      <div class="contents_sub">        <h1>How to Use Mathematica Kernel</h1>        <p>&nbsp; It is possible to run Mathematica kernel without notebook          interface. Sometimes we are required to use the kernel, particularly          when no graphical interface is installed in CPU clusters <a href="#note1">[1]</a>.        </p>        <div class="cont"><span style="font-weight: bold;"> Contents</span><br>          1. <a href="#general">General tips</a><br>          2. <a href="#shell">Shell setup</a><br>          3. <a href="#batchmode">Batch mode</a><br>          4. <a href="#scriptmode">Script mode</a><br>          5. <a href="#tips">Tips and Options</a><br>          6. <a href="#remote">Remote login guide</a> </div>        <h2>1. General tips</h2>        <p> There are general tips for making the computation by Mathematica          faster. </p>        <ul style="margin:0 0 0 30px; padding:0">          <li>This article <a href="#note2">[2]</a> is useful to write a faster            mathematica code.</li> <li>Do not use Simplify[] or FullSimplify[]. When a code mysteriously gets too slow at certain parameter values, then this may be because Simplify[] works poorly for a big (and complicated) data.</li> <li>Try to <a href="https://reference.wolfram.com/language/ParallelTools/tutorial/Overview.html">parallelize</a>            the computation.</li>          <li>Let your computer run overnight. Use            <pre>   NotebookSave[EvaluationNotebook[]]</pre>            to save the current notebook. Record the time by            <pre>   DateList[]</pre>          </li>          <li>Try a remote login to special servers, rather than computing            locally.</li>          <li>Use a larger number of CPUs (a workstation cluster). Usually one            cannot open a notebook, so s/he needs to send jobs to the            Mathematica kernel. For this purpose, a notebook should be rewritten            a batch file; see instructions in <a href="https://reference.wolfram.com/legacy/v5_2/GettingStarted/System-SpecificInformation/SpecialWaysToRunTheKernel.html">Wolfram</a>,            <a href="http://eislab.gatech.edu/people/scholand/nb-convert-text.html">EIS              Lab</a> and <a href="https://www.maths.cam.ac.uk/computing/software/mathematica/mathematica-bg">DAMTP</a>.</li>          <li>To clear all memories in the kernel and keep evaluating the cells,            use<br>            <pre>   SetOptions[$FrontEnd, "ClearEvaluationQueueOnKernelQuit" -&gt; False]; Quit[]</pre>            See <a href="https://stackoverflow.com/questions/7864643/self-restarting-mathkernel-is-it-possible-in-mathematica">this              post</a>.</li>        </ul>        <h2 id="shell">2. Shell setup</h2>        <p>Mathematica kernel can be invoked by using Command Prompt (Windows)          or Terminal (Mac OS X, Unix), and carries the name <span style="font-style: italic;">math</span>          (in Windows or Unix) or <span style="font-style: italic;">MathKernel</span>          (in Mac OS X). In Mac OS X before Catalina (10.5), create </p>        <pre>~/.bash_profile</pre>        <p>and add a line</p>        <div class="quote">          <pre>alias math="/Applications/Mathematica.app/Contents/MacOS/MathKernel"</pre>        </div>        <p>then</p>        <div class="quote">          <pre>$ math</pre>        </div>        <p>invokes the MathKernel. The OS X Catalina uses zsh, and loads          .zprofile or .zshrc; See <a href="https://superuser.com/questions/187639/zsh-not-hitting-profile">this            post</a>. </p>        <h2 id="batchmode">3. Batch mode</h2>        <p>A basic usage is</p>        <div class="quote">          <pre>$ math &lt; test.m &gt; out.txt</pre>        </div>        <p>This gives the text version of the standard output. The output file <span            style="font-style: italic;">out.txt</span>          can have other extensions like <span style="font-style: italic;">out.m</span>.          Here &lt; &gt; is not a bracket, but they specify input and output; A          &lt; B is "input B to A" and B &gt; C is "output B to C". Notebook          files like <span style="font-style: italic;">test.nb</span> cannot be          executed in this mode. Unlike the notebook interface, there is no          waring like "Output exceeds size limits".</p>        <p>&nbsp; The file <span style="font-style: italic;">test.m</span>          should be wrapped as</p>        <div class="quote">          <pre>AppendTo[$Echo, "stdout"]</pre>          <pre>Expand[(x+y)^2]</pre>          <pre>Exit[ ]</pre>        </div>        <p>The first line says the output file should contain the input lines,          which is omitted in the batch mode by default. The final line quit the          kernel when all computation has been done.</p>        <div class="quote">          <pre>$ math -noprompt &lt; test.m &gt; out.txt</pre>        </div>        <p>removes the prompts, In[1]:= and Out[1]:= .</p>        <p>&nbsp; Textual messages are shown on the terminal in the batch mode,          but graphical outputs like Plot[ ] cause some problem <a href="#note3">[3]</a>.</p>        <h2 id="scriptmode">4. Script mode</h2>        <p>A basic usage is</p>        <div class="quote">          <pre>$ math -script test.m</pre>        </div>        <p>The script mode does not produce any output by itself. You need to          write appropriate expressions directly in the Mathematica file, like</p>        <div class="quote">          <pre>res = Simplify[1+1];</pre>          <pre>StandardForm["res="] &gt;&gt; "~/Desktop/output.txt";</pre>          <pre>res &gt;&gt;&gt; "~/Desktop/output.txt";</pre>        </div>        <p>Notebook files cannot be executed in the script mode. Compared to the          batch mode, the script mode works much faster when you handle large          data (e.g. more than 10000 lines).<br>        </p>        <h2 id="tips">5. Tips and Options</h2>        <h3>Creating a script file</h3>        <p>First, clear the output cells by choosing "Cells -&gt; Delete all          output cells" in the menu, and delete the prompts (In[1]:= and          Out[1]:= ) by restart.</p>        <p>Use "Save as -&gt; text (.txt)" and change the extension to .m by          hand. Do not use "Save as -&gt; package (.m)" since it may produce a          crap <a href="#note4">[4]</a>. </p>        <h3>Numerical precision</h3>        <p>Keep in mind that Simplify[] may truncate the precision of numerical          calculation down to MachinePrecision. A workaround is to use          SetPrecision[] inside Simplify[]. </p>        <h3>Debugging</h3>        <p>Unfortunately, Mathematica complains a lot more in the script mode.          The Package scripts should follow a strict grammar, if we want to          execute it at command prompt.</p>        <p>Greek letters (σ, π, ...) can cause troubles if you share the same          file in different operating systems. They should be replaced by          textual notation (\[Sigma], \[Pi], ...).</p>        <p>Do not forget to put the semicolon (;) at the end of each sentence,          because CR may be totally neglected in the script mode.</p>        <p>In Windows, a MathKernel session terminates immediately after Exit[]          or Quit[]. It is better to use Interrupt[] for debugging. It is          useless to try <i>cmd /k MathKernel.exe -script file.m</i> because it          stops Command Prompt, not MathKernel. </p>        <h3>Reading data</h3>        <p>A simple example is to use</p>        <div class="quote">          <pre>SetDirectory["~/mydocuments"];</pre>          <pre>&lt;&lt; "mydata.txt";</pre>        </div>        <p>FilePrint[ ] just writes out the data, but does not load them.          Reading an external file in this way is much faster than making          copy-and-paste particularly when the data is large.<br>        </p>        <p>If you want to define the name and location of the data as a          variable, you need to create an input stream.</p>        <div class="quote">          <pre>SetDirectory["~/mydocuments"];</pre>          <pre>instream = OpenRead["mydata.txt"];</pre>          <pre>Get[instream];</pre>          <pre>Close[instream];</pre>        </div>        <p>Get[ ] loads the entire data in the file, while Read[ ] just reads          one line. ReadList[ ] reads the entire file and returns the data as a          list (or a list of NULL if the file is made out of substitutions).          Sometimes Get[ ] does not work properly in different platforms.<br>        </p>        <h3>Writing results</h3>        <p>Create an output stream in order to specify the location and the name          of output file in a flexible way, like</p>        <div class="quote">          <pre>filename = "~/Desktop/myfile.txt";</pre>          <pre>outstream = OpenWrite[filename, PageWidth -&gt; 100];</pre>          <pre>Write[outstream, Table[f[i], {i,1,9}], StandardForm["="]];</pre>          <pre>Write[outstream, Table[i^2, {i,1,9}], StandardForm[";"]];</pre>          <pre>Close[outstream];</pre>        </div>        <p>where each of Write[ ] automatically inserts a new line. Other          methods like</p>        <div class="quote">          <pre>1+1 &gt;&gt; filename;</pre>          <pre>1+1 &gt;&gt; ToString[filename];</pre>        </div>        <p>just create a new file named "filename".</p>        <h3>Measuring the execution time</h3>        <p>To measure the time needed for computation, use</p>        <div class="quote">          <pre>$ time math &lt; test.m &gt; out.txt</pre>        </div>        <p>If you log in to a remote server e.g. by ssh, you can continue the          calculation after logout by adding nohup as </p>        <div class="quote">          <pre>$ nohup math &lt; test.m &gt; out.txt</pre>        </div>        <p>Nohup and time can be combined as</p>        <div class="quote">          <pre>$ nohup bash -c "(time math -script MMd2.1.m) &amp;&gt; timelog.out" &amp;</pre>        </div>        <p>We need to specify two outputs (two &amp;'s) for the following          reasons. Nohup invokes a background process where all standard output          is sent to nohup.out, whereas time writes the duration of process onto          the standard <span style="font-style: italic;">error</span> output <a            href="#note5">[5]</a>.</p>        <h2 id="remote">6. Remote login guide</h2>        <p>One can open a Mathematica notebook in a remote server and show it on          the display of your local computer by using SSH X11-forwarding.          X-server should be installed and launched to enable the          X11-forwarding. In practice, you need to install e.g. <a href="https://www.chiark.greenend.org.uk/%7Esgtatham/putty/">PUTTY</a>          and <a href="http://www.straightrunning.com/XmingNotes/">X-ming</a>          in Windows. <a href="https://www.xquartz.org/index.html">XQuartz</a>          is needed in Mac OS X <a href="#note6">[6]</a>.<br>        </p>        <p>After launching the X-server, use</p>        <div class="quote">          <pre>ssh -X myaccount@server</pre>        </div>        <p> If this does not work, check the file </p>        <pre>/private/etc/sshd_config</pre>        <p>and rewrite</p>        <div class="quote">          <pre>X11Forwarding yes</pre>        </div>        <h3>X-term setup</h3>        <p>&nbsp;&nbsp; In Mac OS X, XQuartz launches X-term as well. The X-term          uses small fonts by default, so I prefer to use the following setup.          Note that this small task is not necessary because Xterm is          interchangeable with Terminal.<br>        </p>        <p>To change the font, create the file </p>        <pre>~/.Xresources</pre>        <p> as follows and restart XQuartz.<br>        </p>        <div class="quote">          <pre>! XTerm</pre>          <pre>XTerm*visualBell: false</pre>          <pre>XTerm*utf-8: 1</pre>          <pre>XTerm*jumpScroll: true</pre>          <pre>XTerm*saveLines: 2000</pre>          <pre>XTerm*scrollBar: true</pre>          <pre>XTerm*rightScrollBar: true</pre>          <pre>XTerm.VT100.geometry:100x40+50+20</pre>          <pre>Xterm*colorMode: true</pre>          <pre>Xterm*cursorColor: grey</pre>          <pre>Xterm*pointerColor: blue</pre>          <pre>XTerm*background: white</pre>          <pre>XTerm*foreground: black</pre>          <pre>XTerm*faceName: Mono</pre>          <pre>XTerm*faceSize: 12</pre>          ! Cursor          <pre>XTerm*VT100*cursorBlink: true</pre>        </div>        <h3>Footnotes</h3>        <p id="note1">[1] An example is the <span style="font-style: italic;">sushiki</span>          server in <a href="https://www.yukawa.kyoto-u.ac.jp/en-GB/contents/kyoudou/computer">Yukawa            Institute</a></p>        <p id="note2">[2] <a href="https://blog.wolfram.com/2011/12/07/10-tips-for-writing-fast-mathematica-code/">10Tips            for Writing Fast Mathematica Code</a> <br>        </p>        <p id="note3">[3] <a href="https://pages.uoregon.edu/noeckel/Mathematica.html">RunningMathematica            without the Notebook interface</a> to export plots or graphics.<br>        </p>        <p id="note4">[4] <a href="https://arxiv.org/abs/cs/0604088">How to Run            Mathematica Batch-files in Background?</a><br>        </p>        <p id="note5">[5] <a href="https://stackoverflow.com/questions/5164985/how-can-i-use-nohup-to-run-process-as-a-background-process-in-linux">howcan            I use nohup to run process as a background process in linux</a></p>        <p id="note6">[6] X11 is replaced by XQuartz as <a href="https://support.apple.com/en-us/HT201341">announcedby            Apple</a>.</p>      </div>    </div>  </body></html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html lang="EN-US">
+  <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+          <link rel="stylesheet" type="text/css" href="mypane.css">
+              <title>Math Kernel</title>
+<style type="text/css">	
+              h1 {text-align: center;}
+              h2 {text-align: center;}
+              h3 {color: darkgreen;}
+              .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px;	margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);} 
+              .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;        text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
+              </style>
+  </head>
+  <body>
+                <div class="wrapper">
+                <div class="sidenav">
+                  <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+                  <div class="sidemenu"><a href="old.html" target="_top">Old</a></div>
+                  <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+                  <div class="sidemenu_on"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+                  <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
+                  <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+                  <div class="sidemenu"><a href="Python.html" target="_top">Python</a></div>
+                	<div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>
+                  <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
+                  <div class="sidemenu"><a href="SageMath.html" target="_top">SageMath</a></div>
+                </div>
+                <div class="contents_sub">
+                  <h1>How to Use Mathematica Kernel</h1>
+                  <p>&nbsp; It is possible to run Mathematica kernel without notebook          interface. Sometimes we are required to use the kernel, particularly          when no graphical interface is installed in CPU clusters <a href="#note1">[1]</a>.
+                  </p>
+                  <div class="cont"><span style="font-weight: bold;"> Contents</span><br>
+                    1. <a href="#general">General tips</a><br>
+                    2. <a href="#shell">Shell setup</a><br>
+                    3. <a href="#batchmode">Batch mode</a><br>
+                    4. <a href="#scriptmode">Script mode</a><br>
+                    5. <a href="#tips">Tips and Options</a><br>
+                    6. <a href="#remote">Remote login guide</a>
+                  </div>
+                    <h2>1. General tips</h2>
+                    <p> There are general tips for making the computation by Mathematica          faster. </p>
+                    <ul style="margin:0 0 0 30px; padding:0">
+                      <li>This article <a href="#note2">[2]</a> is useful to write a faster            mathematica code.</li>
+                      <li>Do not use Simplify[] or FullSimplify[]. When a code mysteriously gets too slow at certain parameter values, then this may be because Simplify[] works poorly for a big (and complicated) data.</li>
+                      <li>Try to <a href="https://reference.wolfram.com/language/ParallelTools/tutorial/Overview.html">parallelize</a>            the computation.</li>
+                      <li>Let your computer run overnight. Use
+                        <pre>   NotebookSave[EvaluationNotebook[]]</pre>            to save the current notebook. Record the time by
+                        <pre>   DateList[]</pre>          </li>
+                        <li>Try a remote login to special servers, rather than computing            locally.</li>
+                        <li>Use a larger number of CPUs (a workstation cluster). Usually one            cannot open a notebook, so s/he needs to send jobs to the            Mathematica kernel. For this purpose, a notebook should be rewritten            a batch file; see instructions in <a href="https://reference.wolfram.com/legacy/v5_2/GettingStarted/System-SpecificInformation/SpecialWaysToRunTheKernel.html">Wolfram</a>,            <a href="http://eislab.gatech.edu/people/scholand/nb-convert-text.html">EIS              Lab</a> and <a href="https://www.maths.cam.ac.uk/computing/software/mathematica/mathematica-bg">DAMTP</a>.</li>
+                        <li>To clear all memories in the kernel and keep evaluating the cells,            use<br>
+                          <pre>   SetOptions[$FrontEnd, "ClearEvaluationQueueOnKernelQuit" -&gt; False]; Quit[]</pre>
+                          See <a href="https://stackoverflow.com/questions/7864643/self-restarting-mathkernel-is-it-possible-in-mathematica">this              post</a>.</li>
+                        </ul>
+                        <h2 id="shell">2. Shell setup</h2>
+                        <p>Mathematica kernel can be invoked by using Command Prompt (Windows)          or Terminal (Mac OS X, Unix), and carries the name <span style="font-style: italic;">math</span>          (in Windows or Unix) or <span style="font-style: italic;">MathKernel</span>          (in Mac OS X). In Mac OS X before Catalina (10.5), create
+                        </p>
+                        <pre>~/.bash_profile</pre>
+                        <p>and add a line</p>
+                        <div class="quote">
+                          <pre>alias math="/Applications/Mathematica.app/Contents/MacOS/MathKernel"</pre>
+                        </div>
+                        <p>then</p>
+                        <div class="quote">
+                          <pre>$ math</pre>
+                        </div>
+                        <p>invokes the MathKernel. The OS X Catalina uses zsh, and loads          .zprofile or .zshrc; See <a href="https://superuser.com/questions/187639/zsh-not-hitting-profile">this            post</a>.
+                        </p>
+                        <h2 id="batchmode">3. Batch mode</h2>
+                        <p>A basic usage is</p>
+                        <div class="quote">
+                          <pre>$ math &lt; test.m &gt; out.txt</pre>
+                        </div>
+                        <p>This gives the text version of the standard output. The output file <span            style="font-style: italic;">out.txt</span>          can have other extensions like <span style="font-style: italic;">out.m</span>.          Here &lt; &gt; is not a bracket, but they specify input and output; A          &lt; B is "input B to A" and B &gt; C is "output B to C". Notebook          files like <span style="font-style: italic;">test.nb</span> cannot be          executed in this mode. Unlike the notebook interface, there is no          waring like "Output exceeds size limits".
+                        </p>
+                        <p>&nbsp; The file <span style="font-style: italic;">test.m</span>          should be wrapped as
+                        </p>
+                        <div class="quote">
+                          <pre>AppendTo[$Echo, "stdout"]</pre>
+                          <pre>Expand[(x+y)^2]</pre>
+                          <pre>Exit[ ]</pre>
+                        </div>
+                        <p>The first line says the output file should contain the input lines,          which is omitted in the batch mode by default. The final line quit the          kernel when all computation has been done.</p>
+                        <div class="quote">
+                          <pre>$ math -noprompt &lt; test.m &gt; out.txt</pre>
+                        </div>
+                        <p>removes the prompts, In[1]:= and Out[1]:= .</p>
+                        <p>&nbsp; Textual messages are shown on the terminal in the batch mode,          but graphical outputs like Plot[ ] cause some problem <a href="#note3">[3]</a>.
+                        </p>
+                        <h2 id="scriptmode">4. Script mode</h2>
+                        <p>A basic usage is</p>
+                        <div class="quote">
+                          <pre>$ math -script test.m</pre>
+                        </div>
+                        <p>The script mode does not produce any output by itself. You need to          write appropriate expressions directly in the Mathematica file, like
+                        </p>
+                        <div class="quote">
+                          <pre>res = Simplify[1+1];</pre>
+                          <pre>StandardForm["res="] &gt;&gt; "~/Desktop/output.txt";</pre>
+                          <pre>res &gt;&gt;&gt; "~/Desktop/output.txt";</pre>
+                        </div>
+                        <p>Notebook files cannot be executed in the script mode. Compared to the          batch mode, the script mode works much faster when you handle large          data (e.g. more than 10000 lines).<br>
+                        </p>
+                        <h2 id="tips">5. Tips and Options</h2>
+                        <h3>Creating a script file</h3>
+                        <p>First, clear the output cells by choosing "Cells -&gt; Delete all          output cells" in the menu, and delete the prompts (In[1]:= and          Out[1]:= ) by restart.
+                        </p>
+                        <p>Use "Save as -&gt; text (.txt)" and change the extension to .m by          hand. Do not use "Save as -&gt; package (.m)" since it may produce a          crap <a href="#note4">[4]</a>.
+                        </p>
+                        <h3>Numerical precision</h3>
+                        <p>Keep in mind that Simplify[] may truncate the precision of numerical          calculation down to MachinePrecision. A workaround is to use          SetPrecision[] inside Simplify[].
+                        </p>
+                        <h3>Debugging</h3>
+                        <p>Unfortunately, Mathematica complains a lot more in the script mode.          The Package scripts should follow a strict grammar, if we want to          execute it at command prompt.</p>
+                        <p>Greek letters (σ, π, ...) can cause troubles if you share the same          file in different operating systems. They should be replaced by          textual notation (\[Sigma], \[Pi], ...).</p>
+                        <p>Do not forget to put the semicolon (;) at the end of each sentence,          because CR may be totally neglected in the script mode.</p>
+        <p>In Windows, a MathKernel session terminates immediately after Exit[]          or Quit[]. It is better to use Interrupt[] for debugging. It is          useless to try <i>cmd /k MathKernel.exe -script file.m</i> because it          stops Command Prompt, not MathKernel. 
+                        </p>
+                        <h3>Reading data</h3>
+                        <p>A simple example is to use
+                        </p>
+                        <div class="quote">
+                          <pre>SetDirectory["~/mydocuments"];</pre>
+                          <pre>&lt;&lt; "mydata.txt";</pre>
+                        </div>
+                        <p>FilePrint[ ] just writes out the data, but does not load them.          Reading an external file in this way is much faster than making          copy-and-paste particularly when the data is large.<br>
+                        </p>        <p>
+                          If you want to define the name and location of the data as a          variable, you need to create an input stream.
+                        </p>
+                          <div class="quote">
+                            <pre>SetDirectory["~/mydocuments"];</pre>
+                            <pre>instream = OpenRead["mydata.txt"];</pre>
+                            <pre>Get[instream];</pre>
+                            <pre>Close[instream];</pre>
+                        </div>
+                        <p>Get[ ] loads the entire data in the file, while Read[ ] just reads          one line. ReadList[ ] reads the entire file and returns the data as a          list (or a list of NULL if the file is made out of substitutions).          Sometimes Get[ ] does not work properly in different platforms.<br>        </p>
+<h3>Writing results</h3>        
+                        <p>Create an output stream in order to specify the location and the name          of output file in a flexible way, like</p>
+                        <div class="quote">
+                          <pre>filename = "~/Desktop/myfile.txt";</pre>
+                          <pre>outstream = OpenWrite[filename, PageWidth -&gt; 100];</pre>
+                          <pre>Write[outstream, Table[f[i], {i,1,9}], StandardForm["="]];</pre>
+                          <pre>Write[outstream, Table[i^2, {i,1,9}], StandardForm[";"]];</pre>
+                          <pre>Close[outstream];</pre>
+                        </div>
+                        <p>where each of Write[ ] automatically inserts a new line. Other          methods like</p>
+                        <div class="quote">
+                          <pre>1+1 &gt;&gt; filename;</pre>
+                          <pre>1+1 &gt;&gt; ToString[filename];</pre>
+                        </div>
+                        <p>just create a new file named "filename".</p>
+                        <h3>Measuring the execution time</h3>
+                        <p>To measure the time needed for computation, use</p>
+                        <div class="quote">
+                          <pre>$ time math &lt; test.m &gt; out.txt</pre>
+                        </div>
+                        <p>If you log in to a remote server e.g. by ssh, you can continue the          calculation after logout by adding nohup as </p>
+                        <div class="quote">
+                          <pre>$ nohup math &lt; test.m &gt; out.txt</pre>
+                        </div>        <p>Nohup and time can be combined as</p>
+                        <div class="quote">
+                          <pre>$ nohup bash -c "(time math -script MMd2.1.m) &amp;&gt; timelog.out" &amp;</pre>
+                        </div>
+                        <p>We need to specify two outputs (two &amp;'s) for the following          reasons. Nohup invokes a background process where all standard output          is sent to nohup.out, whereas time writes the duration of process onto          the standard <span style="font-style: italic;">error</span> output <a            href="#note5">[5]</a>.
+                        </p>
+                        <h2 id="remote">6. Remote login guide</h2>
+                        <p>One can open a Mathematica notebook in a remote server and show it on          the display of your local computer by using SSH X11-forwarding.          X-server should be installed and launched to enable the          X11-forwarding. In practice, you need to install e.g. <a href="https://www.chiark.greenend.org.uk/%7Esgtatham/putty/">PUTTY</a>          and <a href="http://www.straightrunning.com/XmingNotes/">X-ming</a>          in Windows. <a href="https://www.xquartz.org/index.html">XQuartz</a>          is needed in Mac OS X <a href="#note6">[6]</a>.<br>
+                        </p>
+                        <p>After launching the X-server, use</p>
+                        <div class="quote">
+                          <pre>ssh -X myaccount@server</pre>
+                        </div>
+                        <p> If this does not work, check the file </p>
+                        <pre>/private/etc/sshd_config</pre>
+                        <p>and rewrite</p>
+                        <div class="quote">
+                          <pre>X11Forwarding yes</pre>
+                        </div>
+                        <h3>X-term setup</h3>
+                        <p>&nbsp;&nbsp; In Mac OS X, XQuartz launches X-term as well. The X-term          uses small fonts by default, so I prefer to use the following setup.          Note that this small task is not necessary because Xterm is          interchangeable with Terminal.<br>
+                        </p>        <p>To change the font, create the file </p>
+                        <pre>~/.Xresources</pre>
+                        <p> as follows and restart XQuartz.<br>
+                        </p>
+                        <div class="quote">
+                          <pre>! XTerm</pre>
+                          <pre>XTerm*visualBell: false</pre>
+                          <pre>XTerm*utf-8: 1</pre>
+                          <pre>XTerm*jumpScroll: true</pre>
+                          <pre>XTerm*saveLines: 2000</pre>
+                          <pre>XTerm*scrollBar: true</pre>
+                          <pre>XTerm*rightScrollBar: true</pre>
+                          <pre>XTerm.VT100.geometry:100x40+50+20</pre>
+                          <pre>Xterm*colorMode: true</pre>
+                          <pre>Xterm*cursorColor: grey</pre>
+                          <pre>Xterm*pointerColor: blue</pre>
+                          <pre>XTerm*background: white</pre>
+                          <pre>XTerm*foreground: black</pre>
+                          <pre>XTerm*faceName: Mono</pre>
+                          <pre>XTerm*faceSize: 12</pre>          ! Cursor
+                          <pre>XTerm*VT100*cursorBlink: true</pre>
+                        </div>
+                        <h3>Footnotes</h3>
+                        <p id="note1">[1] An example is the <span style="font-style: italic;">sushiki</span>          server in <a href="https://www.yukawa.kyoto-u.ac.jp/en-GB/contents/kyoudou/computer">Yukawa            Institute</a>
+                        </p>
+                        <p id="note2">[2] <a href="https://blog.wolfram.com/2011/12/07/10-tips-for-writing-fast-mathematica-code/">10Tips            for Writing Fast Mathematica Code</a> <br>
+                        </p>
+                        <p id="note3">[3] <a href="https://pages.uoregon.edu/noeckel/Mathematica.html">RunningMathematica            without the Notebook interface</a> to export plots or graphics.<br>
+                        </p>
+                        <p id="note4">[4] <a href="https://arxiv.org/abs/cs/0604088">How to Run            Mathematica Batch-files in Background?</a><br>
+                        </p>
+                        <p id="note5">[5] <a href="https://stackoverflow.com/questions/5164985/how-can-i-use-nohup-to-run-process-as-a-background-process-in-linux">howcan            I use nohup to run process as a background process in linux</a>
+                        </p>
+                        <p id="note6">[6] X11 is replaced by XQuartz as <a href="https://support.apple.com/en-us/HT201341">announcedby            Apple</a>.
+                        </p>
+                      </div>
+                    </div>
+  </body>
+</html>
