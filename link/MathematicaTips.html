@@ -27,7 +27,7 @@
                 </div>
                 <div class="contents_sub">
                   <h1>How to Use Mathematica Kernel</h1>
-                  <p>&nbsp; It is possible to run Mathematica kernel without notebook          interface. Sometimes we are required to use the kernel, particularly          when no graphical interface is installed in CPU clusters <a href="#note1">[1]</a>.
+                  <p>&nbsp; It is possible to run Mathematica kernel without notebook          interface. Sometimes we are required to use the kernel, particularly when no graphical interface is installed in CPU clusters <a href="#note1">[1]</a>.
                   </p>
                   <div class="cont"><span style="font-weight: bold;"> Contents</span><br>
                     1. <a href="#general">General tips</a><br>
@@ -42,6 +42,7 @@
                     <ul style="margin:0 0 0 30px; padding:0">
                       <li>This article <a href="#note2">[2]</a> is useful to write a faster            mathematica code.</li>
                       <li>Do not use Simplify[] or FullSimplify[]. When a code mysteriously gets too slow at certain parameter values, then this may be because Simplify[] works poorly for a big (and complicated) data.</li>
+                      <li>Use Hold[_] to create dummy variables. Objects such as Cycles[_] contain extra properties. Mathematica has to check these extra properties for any operations such as Simplify[_] or Coefficient[_].</li>
                       <li>Try to <a href="https://reference.wolfram.com/language/ParallelTools/tutorial/Overview.html">parallelize</a> the computation. The outermost loop can be most efficiently parallelized. Adjusting the order of indices (e.g. ParallelTable[Table[comp[i,j],{i,10}],{j,100}]) may enhance the speed by an O(1) factor or more.</li>
                       <li>Let your computer run overnight. Use
                         <pre>   NotebookSave[EvaluationNotebook[]]</pre>            to save the current notebook. Record the time by
