@@ -85,6 +85,7 @@
             <li>GAP is sensitive to upper and lower cases.</li>
             <li>To show manual, type e.g. gap&gt; ?Gcd</li>
             <li>To complement a command, type TAB once or twice.</li>
+            <li>To recycle the last output, use "last" as in Print(last);</li>
             <li>All calculation of GAP is exact. No decimals can be used.</li>
           </ul>
           <ul>
@@ -187,17 +188,27 @@
           </div>
           <p>The permutation acts on a list by</p>
           <div class="quote">
-            <pre>gap&gt; Permuted([1..6],a^-1);</pre>
+            <pre>gap&gt; OnTuples([1..6], (1,2,3,4,5,6));</pre>
             <pre>[2,3,4,5,6,1]</pre>
-            <pre>gap&gt; PermList(Permuted([1..6],a^-1));</pre>
+            <pre>gap&gt; Permuted([1..6], (1,2,3,4,5,6)^-1);</pre>
+            <pre>[2,3,4,5,6,1]</pre>
+            <pre>gap&gt; PermList(Permuted([1..6], (1,2,3,4,5,6)^-1));</pre>
             <pre>(1,2,3,4,5,6)</pre>
           </div>
-          <p>and the product permutation acts by (x*y).list = x<sup>-1</sup>.(y<sup>-1</sup>.list).</p>
+          <p>The product permutation acts by (x*y).list = y.(x.list), whichever OnTuples() or Permuted() is used.</p>
           <div class="quote">
-            <pre>gap&gt; PermList(Permuted(Permuted([1..6],b^-1),a^-1));</pre>
-            <pre>(2,3,4,5,6)</pre>
-            <pre>gap&gt; PermList(Permuted(Permuted([1..6],a^-1),b^-1));</pre>
+            <pre>gap&gt; OnTuples([1..6], (1,2)*(1,2,3,4,5,6));</pre>
+            <pre>[3,2,4,5,6,1]</pre>
+            <pre>gap&gt; OnTuples(OnTuples([1..6], (1,2)),(1,2,3,4,5,6));</pre>
+            <pre>[3,2,4,5,6,1]</pre>
+            <pre>gap&gt; PermList(last);</pre>
             <pre>(1,3,4,5,6)</pre>
+            <pre>gap&gt; Permuted([1..6], (1,2)*(1,2,3,4,5,6));</pre>
+            <pre>[6,2,1,3,4,5]</pre>
+            <pre>gap&gt; Permuted(Permuted([1..6], (1,2)), (1,2,3,4,5,6));</pre>
+            <pre>[6,2,1,3,4,5]</pre>
+            <pre>gap&gt; PermList(last);</pre>
+            <pre>(1,6,5,4,3)</pre>
           </div>
           <p>The adjoint action is denoted by y^x = x<sup>-1</sup>*y*x,</p>
           <div class="quote">
