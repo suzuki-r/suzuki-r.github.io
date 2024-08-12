@@ -34,7 +34,8 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             <a href="#sec1">1. Introduction</a><br>
             <a href="#sec2">2. Install</a><br>
             <a href="#sec3">3. Launch</a><br>
-            <a href="#sec4">4. Tips</a><br>
+            <a href="#sec4">4. Basics</a><br>
+            <a href="#sec5">5. Tips</a><br>
           </div>
         </div>
         <br>
@@ -95,7 +96,26 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
             The rest of procedures is similar to pyenv.
           </p>
         </div>
-        <h3 id="sec4">4. Tips<br>
+        <h3 id="sec4">4. Basics<br>
+        </h3>
+        <div style="margin-left:30px; margin-right:30px;">
+          <p>In order to use the functions of library such as GAP, add the library name, like
+          </p>
+          <div class="quote">
+            <pre>S2S2 = gap.DirectProduct(SymmetricGroup(2), SymmetricGroup(2))</pre>
+            <pre>orbits = gap.OrbitsDomain(S2S2,SymmetricGroup(4))</pre>
+          </div>
+          <p>
+            The contents of a variable can be displayed by print(), show(). The function view() gives LaTeX output as a PDF.
+          </p>
+          <div class="quote">
+            <pre>show(orbits)</pre>
+          </div>
+          <p>
+            You can reuse the last output by _, the second last by __, the thir last by ___, and the n-th last by _n. Note that the definition of a function produces no output.
+          </p>
+        </div>
+        <h3 id="sec5">5. Tips<br>
         </h3>
         <div style="margin-left:30px; margin-right:30px;">
           <p>
