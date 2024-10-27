@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="EN-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="mypane.css">
+    <title>How to reinstall Ubuntu from scratch</title>
+    <style>
+      .quote {width: 80%;border-style: solid; border-color: rgb(98, 150, 102); border-width: 1px 3px 3px 1px;
+        margin: 0px 0px 0px 40px; text-indent: 1em;	line-height: 0.8;	background-color: rgb(230, 248, 228);}
+        .cont{width: 50%; text-align: center;	padding: 1em;	border: solid thin;	margin: 0 auto 0 auto;
+        text-indent: 2em; line-height: 1.4; font size: 4; word-wrap:auto;}
+div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:white}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidenav">
+        <div class="sidemenu"><a href="panel.html" target="_top">Links</a></div>
+        <div class="sidemenu"><a href="old.html" target="_top">Old</a></div>
+        <div class="sidemenu"><a href="online.html" target="_top">Web resources</a></div>
+        <div class="sidemenu"><a href="MathematicaTips.html" target="_top">Mathematica</a></div>
+        <div class="sidemenu"><a href="MathKernelTips.html" target="_top">Math Kernel</a></div>
+        <div class="sidemenu"><a href="GAP.html" target="_top">GAP</a></div>
+        <div class="sidemenu"><a href="Python.html" target="_top">Python</a></div>
+        <div class="sidemenu"><a href="Jupyter.html" target="_top">Jupyter</a></div>
+        <div class="sidemenu"><a href="Qiskit.html" target="_top">Qiskit</a></div>
+        <div class="sidemenu"><a href="SageMath.html" target="_top">SageMath</a></div>
+        <div class="sidemenu_on"><a href="Reinstall_Ubuntu.html" target="_top">Ubuntu</a></div>
+      </div>
+      <div class="contents_sub">
+        <h2 style="text-align: center;">How to reinstall Ubuntu from scratch</h2>
+        <hr style="width: 95%;">
+        <div align="left">
+          <ul>
+          <li><a href="#turn-on-workstations">Turn on workstations</a></li>
+          <li><a href="#workstation-boot-options">Workstation boot options</a></li>
+          <li><a href="#choose-ubuntu-or-debian">Choose Ubuntu or Debian?</a></li>
+          <li><a href="#create-live-usb-from-installer-image">Create Live USB from installer image</a></li>
+          <li><a href="#boot-from-live-usb">Boot from live USB</a></li>
+          <li><a href="#boot-ubuntu-with-low-res-graphics">Boot Ubuntu with low-res graphics</a></li>
+          <li><a href="#install-graphics-driver">Install graphics driver</a></li>
+          <li><a href="#install-usb-wifi-dongle">Install USB Wifi dongle</a></li>
+          <li><a href="#add-language-inputs">Add language inputs</a></li>
+          <li><a href="#install-softwares">Install softwares</a></li>
+          <li><a href="#install-pyenv-virtualenv">Install pyenv-virtualenv</a></li>
+          <li><a href="#install-mathematica">Install Mathematica</a></li>
+          <li><a href="#install-latex">Install LaTeX</a></li>
+          <li><a href="#install-sagemath">Install SageMath</a></li>
+          <li><a href="#convert-md-html">Convert Markdown to HTML</a></li>
+          </ul>
+        </div>
+        <hr style="width: 95%;">
+        <h2 id="turn-on-workstations">Turn on workstations</h2>
+        <p>Both Dell and Lenovo are slow to launch the system, though Lenovo is slightly better.
+        Dell does not want to restart the machine when internal components are still lightly charged. Even if you press the power button, the machine automatically turns off after 10 seconds. In this case, we should unplug the workstation, wait for a while, and press the power button again. If the problem is getting worse, then there can be <a href="https://superuser.com/questions/228176/computer-wont-start-unless-power-is-removed-for-5-minutes">other reasons</a>.</p>
+        <h2 id="workstation-boot-options">Workstation boot options</h2>
+        <p>Dell</p>
+        <ul>
+        <li>Press F2 after startup to enter BIOS</li>
+        <li>Press SHIFT to enter GRUB</li>
+        </ul>
+        <p>Lenovo</p>
+        <ul>
+        <li>Press Enter after startup to enter BIOS</li>
+        <li>Press ESC to enter GRUB</li>
+        </ul>
+        <p>One should release ESC when &quot;enter BIOS&quot; message disappeared.</p>
+        <h2 id="choose-ubuntu-or-debian">Choose Ubuntu or Debian?</h2>
+        <p>Choose the Linux distro to install</p>
+        <ul>
+        <li>Debian is usually minimal, and suitable for server.</li>
+        <li>Ubuntu is usually comprehensive, and suitable for desktop.</li>
+        <li>ArchLinux is a variant of Ubuntu, maintained by volunteers.</li>
+        </ul>
+        <h2 id="create-live-usb-from-installer-image">Create Live USB from installer image</h2>
+        <p>Download the ISO image, and convert to a <b>bootable image</b> in a USB stick. Do not just copy and paste ISO.
+        Mac OSX cannot recognize the contents of a bootable image (Live USB) after successful conversion.<br>
+        Some instructions are found in <a href="https://www.dell.com/support/kbdoc/en-us/000119771/how-to-create-a-live-ubuntu-linux-usb-key?lwp=rt">English</a> and <a href="https://dezanari.com/mac-ubuntu-usb-install/">Japanese</a>.</p>
+        <hr>
+        <h2 id="boot-from-live-usb">Boot from live USB</h2>
+        <ul>
+        <li>Boot the workstation and enter BIOS mode.</li>
+        <li>Insert Live USB, and change Primary Boot Sequence to USB. Exit BIOS mode.</li>
+        <li>After a while, you see GRUB window.</li>
+        <li>Since the display driver is not installed at this moment, choose (and do not choose 'Try and Install Ubuntu')</li>
+        </ul>
+        <div class="quote">
+        <pre>Ubuntu (safe graphics)</pre>
+        </div>
+        <ul>
+        <li>Now Ubuntu is launched. Just click 'Install Ubuntu' icon. Choose 'Try Ubuntu' if you want to access HDD.</li>
+        </ul>
+        <p>After the installation, you should restart the workstation. However, the graphics driver is not installed yet. You still need to enter GRUM mode manually.</p>
+        <h2 id="log-in-by-text-console-or-gui">Log in by Text console or GUI</h2>
+        <p>When you accidentally entered log in screen (before creating any user accounts), you can return to TTY (text console) by typing Ctrl+Alt+F2. You can return to GUI by typing Ctrl+Alt+F1. The 'F-number' key may change depending on your system.</p>
+        <h2 id="boot-ubuntu-with-low-res-graphics">Boot Ubuntu with low-res graphics</h2>
+        <p>When you boot the machine, you should enter the GRUB mode by pushing(?) shifting ESC (Lenovo) or SHIFT (Dell).
+        From GRUB, you edit the boot option by typing 'e' at 'Ubuntu', and add 'nomodeset' after 'quiet splash' as follows,</p>
+        <div class="quote">
+        <pre>linux /boot/vmlinuz-... root=... ro quiet splash nomodeset $vt_handoff</pre>
+        </div>
+        <p>Sometimes you have to scroll down the window to find this code; see <a href="https://www.dell.com/support/kbdoc/en-us/000123893/manual-nomodeset-kernel-boot-line-option-for-linux-booting">Dell's page</a></p>
+        <p>Here 'nomodeset' means that Ubuntu kernels does not load the video drivers, and uses BIOS mode until the X driver is loaded. In other words, if the correct video drivers are installed, one can see the boot sequence and login screen at high resolution.</p>
+        <h2 id="install-graphics-driver">Install graphics driver</h2>
+        <p>After booting Ubuntu, the workstation should be connected to the internet.<br>
+        Click &quot;software update&quot; in &quot;setting”. It takes some time. We cannot execute multiple installation processes at the same time, because some files are locked.</p>
+        <p>Now we configure the setting of &quot;apt&quot; for China; this process may not be needed, but it could save time to download. Go to <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">Tsinghua mirror</a> and rewrite the file</p>
+        <div class="quote">
+        <pre>/etc/apt/sources.list</pre>
+        </div>
+        <p>Probably you need to get the latest version of certificates from <a href="http://archive.ubuntu.com/ubuntu/pool/main/c/ca-certificates/">Ubuntu page</a>. If you use Ubuntu20.04, download</p>
+        <div class="quote">
+        <pre>ca-certificates_20211016~20.04.1_all.deb</pre>
+        </div>
+        <p>Execute,</p>
+        <div class="quote">
+        <pre>sudo apt update</pre>
+        <pre>sudo apt upgrade</pre>
+        <pre>sudo apt install build-essential</pre>
+        </div>
+        <p>Now we can install the graphics driver. Open<br>
+        Software &amp; Updates &gt; Settings &gt; Additional Drivers &gt;<br>
+        NVIDIA Corporation: GP107GL [Quadro P1000] &gt;
+        Using NVIDIA driver meta-package from nvidia-driver-550 (proprietary,tested)
+        and click install (or Apply Changes). The precise numner '550' may change. It is not needed to change the `nomodeset' boot options.</p>
+        <p>If  WiFi is not recognized, probably the USB dongle is broken; see <a href="https://help.ubuntu.com/stable/ubuntu-help/net-wireless-troubleshooting-hardware-check.html.en">Troubleshooting</a> One can also try</p>
+        <div class="quote">
+        <pre>sudo apt install net-tools</pre>
+        <pre>ifconfig</pre>
+        </div>
+        <h2 id="install-usb-wifi-dongle">Install USB Wifi dongle</h2>
+        <p>When you set up the workstation from scratch, it is better to use the USB Wifi dongle compatible with the latest version of Ubuntu. However, if you want to try a faster Wifi dongle, you can try TP-Link Archer T2U Nano.</p>
+        <p>As of 2022, the Linux kernel version of Ubuntu 20.04 is 5.14, which one can check by</p>
+        <div class="quote">
+        <pre>uname -a</pre>
+        </div>
+        <p>The driver of TP-Link Archer T2U Nano is called RTL8812AU. Unfortunately, this driver is only compatibel with Linux kernel version ≤ 5.8. However, the driver RTL88<strong>21</strong>AU is compatible with later versions of the Linux kernel. You can still install this driver.
+        See <a href="https://askubuntu.com/questions/1395639/rtl8812au-driver-listed-in-lsmod-but-not-working">AskUbuntu</a> and <a href="https://github.com/morrownr?tab=repositories">GitHub repos</a> for the details of installation.</p>
+        <h2 id="add-language-inputs">Add language inputs</h2>
+        <p>Go to
+        Setting &gt; Region and Language &gt; Manage Installed Languages &gt;
+        Install language packs (JP, CN)</p>
+        <p>Here you can logout and logon. Then reopen the same window, Add Input Sources</p>
+        <ul>
+        <li>JP-MOZC</li>
+        <li>CN-Intelligent Pinyin</li>
+        </ul>
+        <p>Note that pure “Japanese” or “Chinese” are just keyboard layouts. They are not useful for typing Japanese or Chinese languages.</p>
+        <hr>
+        <h2 id="install-softwares">Install softwares</h2>
+        <p><strong>General warning</strong></p>
+        <p>When you install something, please watch the log. Some components may not be installed due to temporary internet connection problems. Always collect the missing files.<br>
+        Often you need to edit .profile, .bashrc or .bash_profile for setup. An easy way is to open Text Editor, right-click to show hidden files. The hidden files can be shown or hidden also by CTRL+h.</p>
+        <h2 id="install-pyenv-virtualenv">Install pyenv-virtualenv</h2>
+        <p>An easy way is use Homebrew for Linux, rather than the “install pyenv in Ubuntu” procedures, because there are many pitfalls.</p>
+        <ul>
+        <li>First, execute</li>
+        </ul>
+        <div class="quote">
+        <pre>sudo apt install git</pre>
+        <pre>sudo apt install curl</pre>
+        </div>
+        <ul>
+        <li>
+        <p>Second, go to <a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">Tsinghua's website</a> and install Homebrew for Linux (in China).</p>
+        </li>
+        <li>
+        <p>Third, execute</p>
+        </li>
+        </ul>
+        <div class="quote">
+        <pre>brew install pyenv</pre>
+        <pre>brew install pyenv-virtualenv</pre>
+        </div>
+        <ul>
+        <li>Fourth, add the following two lines to .bashrc</li>
+        </ul>
+        <div class="quote">
+        <pre>eval &quot;$(pyenv init -)&quot;</pre>
+        <pre>eval &quot;$(pyenv virtualenv-init -)&quot;</pre>
+        </div>
+        <p>and logoff and logon again; see also <a href="https://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/">instructions</a>, though virtualenvwrapper is not always necessary.</p>
+        <p>Once pyenv-virtualenv is installed, follow my webpage to install the right version of python (and pip). For example,</p>
+        <div class="quote">
+        <pre>!python3 -m pip install qiskit</pre>
+        <pre>!python3 -m pip install qiskit-ignis</pre>
+        <pre>!python3 -m pip install qiskit-experiment</pre>
+        <pre>!python3 -m pip install matplotlib</pre>
+        <pre>!python3 -m pip install pylatexenc</pre>
+        </div>
+        <h2 id="install-mathematica">Install Mathematica</h2>
+        <p>We should fill in System Transfer Form from Wolfram’s page. If it is declined, contact Wolfram. Usually Wolfram does not change the number of controlling kernels from 12 to 48, so you <strong>always</strong> need to warn them explicitly every time.</p>
+        <p>You go to Wolfram User Portal, download the driver for Linux. You may not be able to download Mathematica and Documentation at the same time. In this case, you should download two files,</p>
+        <ul>
+        <li>Mathematica Only (Web Documentation) , ~2.5GB</li>
+        <li>Documentation Only (Help pages), ~3GB</li>
+        </ul>
+        <p>Without documentation, it takes a long time to open a help page when the internet connection is slow.</p>
+        <h2 id="install-latex">Install LaTeX</h2>
+        <p>Some python program uses LaTeX, which should be installed on the system. If we install TeX Live and Texmaker, we should execute</p>
+        <div class="quote">
+        <pre>sudo apt-get install texlive-full</pre>
+        <pre>sudo apt-get install -y texmaker</pre>
+        </div>
+        <hr>
+        <h2 id="install-sagemath">Install SageMath</h2>
+        <p>The Ubuntu package manager (apt or apt-get) gives you only SageMath v9. In order to install SageMath v10, you need to install from the source code or change OS to e.g. ArchLinux.</p>
+        <p>The source code of the latest version of SageMath is available from <a href="https://github.com/sagemath/sage">GitHub</a>. The instruction to install from source code is available <a href="https://doc.sagemath.org/html/en/installation/source.html#linux-system-package-installation">here</a>. The official website recommends that you have to install Fortran compiler, Python, and other related packages. You should also see <a href="https://github.com/sagemath/sage/#readme">README</a> in GitHub. Note that the information in <a href="https://sagemanifolds.obspm.fr/install_ubuntu.html">this page</a> is not updated. Also, GitHub README is slighly different from <a href="https://doc.sagemath.org/pdf/en/installation/installation.pdf">Installation Guide</a> in PDF.</p>
+        <p>After downloading the source code (e.g. sagemath-master-branch), you rename the folder as &quot;sage&quot;, and execute make+configure.</p>
+        <div class="quote">
+        <pre>cd sage</pre>
+        <pre>make configure</pre>
+        <pre>./configure</pre>
+        </div>
+        <p>Check the output of the configure, as it will suggest extra packages to be installed; sometimes the compiler does not recognize already-installed packages. After install, try</p>
+        <div class="quote">
+        <pre>make reconfigure</pre>
+        </div>
+        <p>Also check the number of CPU's by</p>
+        <div class="quote">
+        <pre>nproc</pre>
+        </div>
+        <p>Assuming that you have 96 CPU's, you can execute</p>
+        <div class="quote">
+        <pre>MAKE=&quot;make -j96&quot; make</pre>
+        </div>
+        <p>It will take a long time (~24h) to build the package from scratch. If the installation process may stop indefinitely; for example, if it fails to download a package several times, then it stops. In that case, you should interrupt the process by Ctrl+C, investigate log, and try repeating the installation step several times.</p>
+        <div class="quote">
+        <pre>make clean</pre>
+        <pre>make reconfigure</pre>
+        <pre>MAKE=&quot;make -j96&quot; make</pre>
+        </div>
+        <p>People say that make can resume installation from the interruption point. However, it is also possible that the installation persistently fails due to corrupt packages. One can try another clean install, but some package conflicts may crush the ssytem, and one needs to reinstall OS (x_x).</p>
+        <h2 id="convert-markdown-to-html">Convert Markdown to HTML</h2>
+        <p>Open a md file using VS code, right-click the editor, select Markdown PDF Export (html).</p>
+        <hr>
+        <p>created 2022/Jul
+        last updated 2024/Oct</p>
+      </div>
+  </div>
+    </div>
+  </body>
+</html>
