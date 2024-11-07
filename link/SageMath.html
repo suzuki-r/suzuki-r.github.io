@@ -28,7 +28,7 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         <div class="sidemenu"><a href="Reinstall_Ubuntu.html" target="_top">Ubuntu</a></div>
       </div>
       <div class="contents_sub">
-        <h2 style="text-align: center;">Qiskit basics</h2>
+        <h1 style="text-align: center;">SageMath basics</h2>
         <hr style="width: 95%;"><br>
         <div align="center">
           <div style="margin: 0px auto; text-align: left; width: 33%;">
@@ -41,18 +41,25 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
         </div>
         <br>
         <hr style="width: 95%;">
-        <h3 id="sec1">1. Introduction<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;">
+        <h2 id="sec1">1. Introduction<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
           <p><a href="https://www.sagemath.org/">SageMath</a> is an open-source mathematical software, similar to Wolfram Mathematica.
             SageMath has <a href="https://doc.sagemath.org/html/en/reference/interfaces/sage/interfaces/gap.html">an interface to GAP</a> by default.</p>
         </div>
-        <h3 id="sec2">2. Install<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;">
+        <h2 id="sec2">2. Install<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
           <p>For Mac OSX, a simple way is to download a binary release (e.g. SageMath-10.2_arm64.dmg).
           </p>
-          <p>For Linux, it is a bit complicated to install the latest version. The best way is to follow <a href="https://doc.sagemath.org/html/en/installation/conda.html">the conda-forge instruction</a>.
+          <p>
+            For Linux, it is complicated to install the latest version.
+            Since the package managers can install only SageMath v9, one needs to build it from source code in GitHub.
+            See the instructions at <a href="Reinstall_Ubuntu.html">Reinstall Ubuntu</a>.
+          </p>
+        </div>
+          <!-- p>
+            The best way is to follow <a href="https://doc.sagemath.org/html/en/installation/conda.html">the conda-forge instruction</a>.
           </p>
             <div class="quote">
               <pre>curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh</pre>
@@ -84,9 +91,9 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           </p>
 
         </div>
-        <h3 id="sec3">3. Launch<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;">
+        <h2 id="sec3">3. Launch<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
           <p>If you used Mamba to install sage, then type
           </p>
           <div class="quote">
@@ -96,29 +103,82 @@ div.comments{margin: 0px auto; text-align: left; width: 90%; background-color:wh
           <p>
             The rest of procedures is similar to pyenv.
           </p>
-        </div>
-        <h3 id="sec4">4. Basics<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;">
-          <p>In order to use the functions of library such as GAP, add the library name, like
+        </div-->
+        <h2 id="sec3">3. Launch<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
+          <p>Type sage in Terminal. If you want to launch jupyter notebook, type
           </p>
           <div class="quote">
-            <pre>S2S2 = gap.DirectProduct(SymmetricGroup(2), SymmetricGroup(2))</pre>
-            <pre>orbits = gap.OrbitsDomain(S2S2,SymmetricGroup(4))</pre>
+            <pre>sage -n jupyter</pre>
           </div>
           <p>
-            The contents of a variable can be displayed by print(), show(). The function view() gives LaTeX output as a PDF.
+            Create an ipynb file, and choose SageMath kernel.
+          </p>
+        </div>
+        <h2 id="sec4">4. Basics<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
+        <h3>Coding and Python</h3>
+        <p>
+          Much of Sage depends on Python. See <a href="https://doc.sagemath.org/html/en/developer/coding_in_python.html">official document</a>.
+        </p>
+        <h3>Base ring and fields</h3>
+          <p>
+            Sage has four rings and fields by default; ZZ for integers, QQ for rational numbers, RR for real numbers and CC for complex numbers.
+            Speaking precisely, they are
+          </p>
+          <div class="quote">
+            <pre>ZZ == IntegerRing()</pre>
+            <pre>QQ == RationalField()</pre>
+            <pre>RR == RealField()</pre>
+            <pre>CC == ComplexField()</pre>
+          </div>
+          <p>
+            These classes have various functions; see <a href="https://doc.sagemath.org/html/en/reference/rings_standard/sage/rings/integer_ring.html">References</a>.
+            One basic usage is to convert data type, e.g. from character to Integers, or Python integer to Sage integer with infinite precision.
+          </p>
+          <div class="quote">
+            <pre>ZZ('1234')==1234</pre>
+          </div>
+          <p>
+            Note that ZZ does not round a real number to an integer, and it results in an error.
+            Imaginary unit is I.
+            The precisions can be specified as
+          </p>
+          <div class="quote">
+            <pre>RR == RealField(prec=53)</pre>
+            <pre>RDF == RealDoubleField()</pre>
+          </div>
+          <p>
+            where RDF is faster for numerical calculations.
+          </p>
+          <h3>GAP library</h3>
+          <p>
+            In order to use the functions of library such as GAP, add the library name, like
+          </p>
+          <div class="quote">
+            <pre>S2S2 = libgap.DirectProduct(SymmetricGroup(2), SymmetricGroup(2))</pre>
+            <pre>orbits = libgap.OrbitsDomain(S2S2,SymmetricGroup(4))</pre>
+          </div>
+          <p>
+            It is said that libgap.(functions) are faster than gap.(functions), though they do the same computation.<br />
+          </p>
+          <h3>Output and history</h3>
+          <p>
+            The contents of a variable can be displayed by print(), show().
           </p>
           <div class="quote">
             <pre>show(orbits)</pre>
           </div>
           <p>
+            The function view() gives LaTeX output as a PDF.<br/>
             You can reuse the last output by _, the second last by __, the thir last by ___, and the n-th last by _n. Note that the definition of a function produces no output.
           </p>
         </div>
-        <h3 id="sec5">5. Tips<br>
-        </h3>
-        <div style="margin-left:30px; margin-right:30px;">
+        <h2 id="sec5">5. Tips<br>
+        </h2>
+        <div style="margin-left:10px; margin-right:10px;">
           <p>
             When you run a SageMath code, the execution at Command Prompt is much faster than opening a notebook; see <a href="https://doc.sagemath.org/html/en/reference/repl/options.html">here</a>. Similarly, GAP functions are much faster than using Python functions.
           </p>
