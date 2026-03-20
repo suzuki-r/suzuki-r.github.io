@@ -24,6 +24,9 @@ a:hover {color: tomato;}
 .cr_container .sidenav .sidemenu_on {margin:10px 0; padding:6px; font-size:x-large; display: block;}
 .cr_container .sidenav .sidemenu_on a {color: tomato;}
 .contents{max-width:770px;margin: 10px 0 0 20px;display:inline-table;vertical-align: top; overflow:scroll; position:absolute;}
+.lec_container { display: flow-root; max-width: 770px; margin: 10px 0 0 20px; } 
+.lec_container .writing { float: left; width: 500px; } 
+.lec_container .poster { float: right; width: 250px; margin-top: 30px; margin-bottom: 10px; }
 .cv_lead{padding:0; margin: 0 36px;}
 .cv_list{padding:0; margin: 0px 12px; list-style-type:none;}
 .cv_list li{padding:0; margin: 6px 0px; list-style-type:none;}
