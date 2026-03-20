@@ -1,5 +1,5 @@
 * {	box-sizing: border-box;}
-body {font-family: Tahoma, Geneva, sans-serif;}
+body {font-family: Tahoma, Geneva, sans-serif; display: flex; align-items: flex-start;}
 h1 {font-size:xx-large;  font-style: normal; font-variant: normal; font-weight: 700; line-height: 26px; margin:20px 0; padding:0;} 
 h2 {font-size:x-large;  font-style: normal; font-variant: normal; font-weight: 700; line-height: 22px; margin:16px 0; padding:0;} 
 h3 {font-size:medium; font-style: normal; font-variant: normal; font-weight: 700; line-height: 16px; margin:12px 0; padding:0;} 
@@ -7,7 +7,7 @@ p {font-size:medium; font-style: normal; font-variant: normal; font-weight: 400;
 a {text-decoration: none;}
 a:hover {color: tomato;}
 .container {position:relative; max-width:960px;margin:0;white-space:nowrap;}
-.cr_container {position:relative;width:186px;margin:0;overflow:hidden;display: inline-block;}
+.cr_container {position: relative; width: 186px; flex-shrink: 0; display: block; overflow: hidden;}
 .cr_container img {vertical-align:middle;}
 .cr_container .sidenav{width:160px; position:fixed; top:20px; left:20px; padding:15px 10px; background: rgb(.7,.7,.7); background: rgba(.7,.7,.7,.7);}
 .cr_container .sidenav .name{margin:20px 0 0px 6px; font-size:x-large;}
@@ -23,7 +23,7 @@ a:hover {color: tomato;}
 .cr_container .sidenav .sidemenu a:hover {color: tomato;}
 .cr_container .sidenav .sidemenu_on {margin:10px 0; padding:6px; font-size:x-large; display: block;}
 .cr_container .sidenav .sidemenu_on a {color: tomato;}
-.contents{max-width:770px;margin: 10px 0 0 20px;display:inline-table;vertical-align: top; overflow:scroll; position:absolute;}
+.contents {max-width: 770px; margin: 10px 0 0 20px; display: block; vertical-align: top; overflow: auto; flex: 1;}
 .lec_container { display: flow-root; max-width: 770px; margin: 10px 0 0 20px; } 
 .lec_container .writing { float: left; width: 500px; } 
 .lec_container .poster { float: right; width: 250px; margin-top: 30px; margin-bottom: 10px; }
